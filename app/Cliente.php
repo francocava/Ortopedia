@@ -16,4 +16,6 @@ class Cliente extends Model
     public function obraSocial(){
         return $this->belongsTo('App\ObraSocial');
     }
+
+    //hola 
 }
