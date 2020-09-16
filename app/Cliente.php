@@ -9,13 +9,13 @@ class Cliente extends Model
 {
     use SoftDeletes;
 
-    public function pedido(){
+    public function pedido() {
         return $this->hasMany('App\Pedido');
     }
 
-    public function obraSocial(){
+    public function obraSocial() {
         return $this->belongsTo('App\ObraSocial');
     }
 
-    //hola 
+
 }
