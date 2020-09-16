@@ -13,4 +13,8 @@ class Usuario extends Model
         return $this->belongsTo('App\Rol');
     }
 
+    public function pedido() {
+        return $this->hasMany('App\Pedido');
+    }
+
 }
