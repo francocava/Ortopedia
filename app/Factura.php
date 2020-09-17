@@ -9,8 +9,5 @@ class Factura extends Model
 {
     use SoftDeletes;
 
-    public function pedido() {
-        return $this -> hasOne('App\Pedido');
-    }
 
 }

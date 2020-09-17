@@ -19,6 +19,7 @@ class CreatePedidosTable extends Migration
             $table->foreignId('suc_id');
             $table->foreignId('estado_id');
             $table->foreignId('usuario_id');
+            $table->foreignId('fac_id');
             $table->date('fecha_ingreso_autorizacion');
             $table->bigInteger('nro_autorizacion');
             $table->date('fecha_retiro');
@@ -46,6 +47,11 @@ class CreatePedidosTable extends Migration
 
             $table->foreign('usuario_id')
                 ->references('id')->on('usuarios')
+                ->onUpdate('cascade')
+                ->onDelete('restrict');
+
+            $table->foreign('fac_id')
+                ->references('id')->on('facturas')
                 ->onUpdate('cascade')
                 ->onDelete('restrict');
 
