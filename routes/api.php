@@ -17,3 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+Route::post('/cliente','ClienteController@store');
+
+Route::apiResource('/sucursal','SucursalController'); //preguntar como es el tema del postman 
