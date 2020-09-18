@@ -14,19 +14,9 @@ class SucursalController extends Controller
      */
     public function index()
     {
-        //
+        return response(Sucursal::all());
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
+   
     /**
      * Store a newly created resource in storage.
      *
@@ -38,9 +28,9 @@ class SucursalController extends Controller
         $sucursal = new Sucursal;
 
         $sucursal->nombre = $request->nombre;
-        $sucursal->save(); //esto persiste en la db pero como sabe que es mi tabla sucursal?
+        $sucursal->save();
 
-        return response()->json($sucursal); //para que es esto ultimo?? para que devuelva lo que meti?
+        return response()->json($sucursal);
     }
 
     /**
@@ -50,17 +40,6 @@ class SucursalController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Sucursal $sucursal)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Sucursal  $sucursal
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Sucursal $sucursal)
     {
         //
     }
