@@ -19,6 +19,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
-Route::post('/cliente','ClienteController@store');
-
-Route::apiResource('/sucursal','SucursalController'); //preguntar como es el tema del postman 
+Route::apiResource('/cliente','ClienteController');
+Route::apiResource('/obraSocial','ObraSocialController');
+Route::apiResource('/sucursal','SucursalController'); 

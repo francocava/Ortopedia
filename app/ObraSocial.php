@@ -9,6 +9,8 @@ class ObraSocial extends Model
 {
     use SoftDeletes;
 
+    protected $table = 'obras_sociales';
+
     public function cliente(){
         return $this->hasMany('App\Cliente');
     }

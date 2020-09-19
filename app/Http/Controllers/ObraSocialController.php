@@ -14,17 +14,7 @@ class ObraSocialController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return response(ObraSocial::all());
     }
 
     /**
@@ -35,7 +25,13 @@ class ObraSocialController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $obraSocial = new ObraSocial();
+
+        $obraSocial->nombre = $request->nombre;
+
+        $obraSocial->save();
+
+        return response()->json($obraSocial);
     }
 
     /**
@@ -49,16 +45,6 @@ class ObraSocialController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\ObraSocial  $obraSocial
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(ObraSocial $obraSocial)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.

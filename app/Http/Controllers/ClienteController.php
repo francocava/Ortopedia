@@ -14,18 +14,9 @@ class ClienteController extends Controller
      */
     public function index()
     {
-        return 'hello';
+        return response(Cliente::all());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -35,7 +26,16 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $cliente = new Cliente();
+
+        $cliente->nombre = $request->nombre;
+        $cliente->apellido = $request->apellido;
+        $cliente->dni = $request->dni;
+        $cliente->obra_id = $request->obra_id; //la idea es que cuando creas un cliente te deje elegir entre OS ya cargadas
+
+        $cliente->save();
+
+        return response()->json($cliente);
     }
 
     /**
@@ -49,16 +49,6 @@ class ClienteController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Cliente  $cliente
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Cliente $cliente)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.

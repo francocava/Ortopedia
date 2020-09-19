@@ -9,6 +9,8 @@ class Cliente extends Model
 {
     use SoftDeletes;
 
+    protected $table = 'clientes';
+
     public function pedido() {
         return $this->hasMany('App\Pedido');
     }
