@@ -9,6 +9,8 @@ class Usuario extends Model
 {
     use SoftDeletes;
 
+    protected $table = 'Usuarios';
+
     public function rol(){
         return $this->belongsTo('App\Rol');
     }

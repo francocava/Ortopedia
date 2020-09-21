@@ -9,6 +9,8 @@ class Rol extends Model
 {
     use SoftDeletes;
 
+    protected $table = 'Roles';
+
     public function usuario(){
         return $this->hasMany('App\Usuario');
     }
