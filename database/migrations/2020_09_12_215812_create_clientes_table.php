@@ -19,6 +19,8 @@ class CreateClientesTable extends Migration
                 $table->string('nombre');
                 $table->string('apellido');
                 $table->string('dni');
+                $table->string('telefono');
+                $table->string('nroAfiliado');
                 $table->timestamps();
                 $table->softDeletes();
     

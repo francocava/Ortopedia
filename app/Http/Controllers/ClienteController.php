@@ -31,7 +31,9 @@ class ClienteController extends Controller
         $cliente->nombre = $request->nombre;
         $cliente->apellido = $request->apellido;
         $cliente->dni = $request->dni;
+        $cliente->telefono = $request->telefono;
         $cliente->obra_id = $request->obra_id; //la idea es que cuando creas un cliente te deje elegir entre OS ya cargadas
+        $cliente->nroAfiliado = $request->nroAfiliado;
 
         $cliente->save();
 
