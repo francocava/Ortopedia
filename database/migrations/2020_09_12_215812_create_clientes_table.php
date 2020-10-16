@@ -18,7 +18,8 @@ class CreateClientesTable extends Migration
                 $table->foreignId('obra_id');
                 $table->string('nombre');
                 $table->string('apellido');
-                $table->string('dni');
+                $table->integer('dni');
+                $table->string('contacto');
                 $table->string('telefono');
                 $table->string('nroAfiliado');
                 $table->timestamps();
