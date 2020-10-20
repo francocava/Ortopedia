@@ -21,7 +21,6 @@ class CreatePedidosTable extends Migration
             $table->foreignId('usuario_id');
             $table->foreignId('fac_id');
             $table->date('fecha_ingreso_autorizacion');
-            $table->bigInteger('nro_autorizacion');
             $table->date('fecha_retiro');
             $table->float('importe_fac');
             $table->string('fl/ct');
