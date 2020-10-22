@@ -19,7 +19,7 @@ class CreateClientesTable extends Migration
                 $table->string('nombre');
                 $table->string('apellido');
                 $table->integer('dni');
-                $table->string('contacto');
+                $table->string('contacto')->nullable();
                 $table->string('telefono');
                 $table->string('nroAfiliado');
                 $table->timestamps();

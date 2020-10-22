@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Cliente;
+use App\ObraSocial;
 use Illuminate\Http\Request;
 
 class ClienteController extends Controller
@@ -28,15 +29,19 @@ class ClienteController extends Controller
     {
         $cliente = new Cliente();
 
+        $obraSocial = ObraSocial::findOrFail($request->obra_id);
+
         $cliente->nombre = $request->nombre;
         $cliente->apellido = $request->apellido;
         $cliente->dni = $request->dni;
         $cliente->contacto = $request->contacto;
         $cliente->telefono = $request->telefono;
-        $cliente->obra_id = $request->obra_id; //la idea es que cuando creas un cliente te deje elegir entre OS ya cargadas
         $cliente->nroAfiliado = $request->nroAfiliado;
 
-        $cliente->save();
+        $obraSocial->cliente()->save($cliente);
+        //otra forma valida:
+        // $cliente->obraSocial()->associate($obraSocial);
+        // $cliente->save();
 
         return response()->json($cliente);
     }
