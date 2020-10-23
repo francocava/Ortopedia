@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Usuario;
+use App\Rol;
 use Illuminate\Http\Request;
 
 class UsuarioController extends Controller
@@ -27,13 +28,14 @@ class UsuarioController extends Controller
     public function store(Request $request)
     {
         $usuario = new Usuario();
+        $rol = Rol::findOrFail($request->rol_id);
 
-        $usuario->rol_id = $request->rol_id;
         $usuario->nombre = $request->nombre;
         $usuario->apellido = $request->apellido;
         $usuario->usuario = $request->usuario;
         $usuario->password = $request->password;
 
+        $usuario->rol()->associate($rol);
         $usuario->save();
 
         return response()->json($usuario);

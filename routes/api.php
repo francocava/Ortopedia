@@ -22,6 +22,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::apiResource('/cliente','ClienteController');
 Route::apiResource('/obraSocial','ObraSocialController');
+Route::apiResource('/rol','RolController');
 Route::apiResource('/sucursal','SucursalController');
-Route::apiResource('/usuario','@UsuarioController');
-Route::apiResource('/rol','@RolController');
+Route::apiResource('/usuario','UsuarioController');

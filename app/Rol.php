@@ -9,7 +9,7 @@ class Rol extends Model
 {
     use SoftDeletes;
 
-    protected $table = 'Roles';
+    protected $table = 'roles';
 
     public function usuario(){
         return $this->hasMany('App\Usuario');
