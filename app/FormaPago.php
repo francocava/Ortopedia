@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class FormaPago extends Model
 {
     use SoftDeletes;
+    protected $table = 'formas_pagos';
 
     public function cobro() {
         return $this->hasMany('App\Cobro');

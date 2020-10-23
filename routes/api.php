@@ -28,3 +28,4 @@ Route::apiResource('/usuario','UsuarioController');
 Route::apiResource('/proveedor','ProveedorController');
 Route::apiResource('/accesorio','AccesorioController');
 Route::apiResource('/producto','ProductoController');
+Route::apiResource('/formaPago','FormaPagoController');
