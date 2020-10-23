@@ -25,3 +25,4 @@ Route::apiResource('/obraSocial','ObraSocialController');
 Route::apiResource('/rol','RolController');
 Route::apiResource('/sucursal','SucursalController');
 Route::apiResource('/usuario','UsuarioController');
+Route::apiResource('/proveedor','ProveedorController');
