@@ -15,7 +15,7 @@ class AccesorioController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json(Accesorio::all());
     }
 
     
@@ -48,7 +48,9 @@ class AccesorioController extends Controller
      */
     public function show(Accesorio $accesorio)
     {
-        //
+        $acc = Accesorio::findOrFail($accesorio->id);
+
+        return response()->json($acc);
     }
 
     /**

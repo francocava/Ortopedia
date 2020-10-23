@@ -14,7 +14,7 @@ class CobroController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json(Cobro::all());
     }
 
     /**

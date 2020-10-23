@@ -29,3 +29,4 @@ Route::apiResource('/proveedor','ProveedorController');
 Route::apiResource('/accesorio','AccesorioController');
 Route::apiResource('/producto','ProductoController');
 Route::apiResource('/formaPago','FormaPagoController');
+//Route::delete('/formaPago{id}','FormaPagoController@destroy')

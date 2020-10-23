@@ -14,7 +14,7 @@ class FormaPagoController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json(FormaPago::all());
     }
 
     
@@ -62,8 +62,13 @@ class FormaPagoController extends Controller
      * @param  \App\FormaPago  $formaPago
      * @return \Illuminate\Http\Response
      */
-    public function destroy(FormaPago $formaPago)
+    public function destroy($id)
     {
-        //
+        $formaPagoDestroy = FormaPago::findOrFail($id);
+        $formaPagoDestroy->delete();
+
+        return response()->json($formaPagoDestroy);
     }
 }
+
+

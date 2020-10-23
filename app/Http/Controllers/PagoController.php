@@ -14,7 +14,7 @@ class PagoController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json(Pago::all());
     }
 
     /**
