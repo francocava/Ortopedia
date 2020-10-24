@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Cobro;
+use App\Pedido;
+use App\FormaPago;
 use Illuminate\Http\Request;
 
 class CobroController extends Controller
@@ -17,15 +19,6 @@ class CobroController extends Controller
         return response()->json(Cobro::all());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -35,7 +28,18 @@ class CobroController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $cobro = new Cobro();
+        $pedido = Pedido::findOrFail($request->pedido_id);
+        $formaPago = FormaPago::findOrFail($request->forma_pago_id);
+
+        $cobro->monto = $request->monto;
+
+        $cobro->pedido()->associate($pedido);
+        $cobro->formaPago()->associate($formaPago);
+        $cobro->save();
+
+        return response()->json($cobro);
+
     }
 
     /**

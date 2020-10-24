@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Pago;
+use App\Pedido;
+use App\FormaPago;
+use App\Proveedor;
 use Illuminate\Http\Request;
 
 class PagoController extends Controller
@@ -25,7 +28,19 @@ class PagoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $pago = new Pago();
+        $pedido = Pedido::findOrFail($request->pedido_id);
+        $formaPago = FormaPago::findOrFail($request->forma_pago_id);
+        $proveedor = Proveedor::findOrFail($request->proveedor_id);
+
+        $pago->monto = $request->monto;
+
+        $pago->pedido()->associate($pedido);
+        $pago->formaPago()->associate($formaPago);
+        $pago->proveedor()->associate($proveedor);
+        $pago->save();
+
+        return response()->json($pago);
     }
 
     /**
