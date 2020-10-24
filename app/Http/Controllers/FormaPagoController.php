@@ -39,9 +39,9 @@ class FormaPagoController extends Controller
      * @param  \App\FormaPago  $formaPago
      * @return \Illuminate\Http\Response
      */
-    public function show(FormaPago $formaPago)
+    public function show($id)
     {
-        //
+        return response()->json(FormaPago::findOrFail($id));
     }
 
     /**
@@ -68,6 +68,8 @@ class FormaPagoController extends Controller
         $formaPagoDestroy->delete();
 
         return response()->json($formaPagoDestroy);
+
+        //La URI es api/formaPago/1
     }
 }
 

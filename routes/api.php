@@ -19,7 +19,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
+//Route::get('/formaPago/{id}','FormaPagoController@index');
+//Route::delete('/formaPago/{id}','FormaPagoController@destroy');
 Route::apiResource('/cliente','ClienteController');
 Route::apiResource('/obraSocial','ObraSocialController');
 Route::apiResource('/rol','RolController');
@@ -29,4 +30,3 @@ Route::apiResource('/proveedor','ProveedorController');
 Route::apiResource('/accesorio','AccesorioController');
 Route::apiResource('/producto','ProductoController');
 Route::apiResource('/formaPago','FormaPagoController');
-//Route::delete('/formaPago{id}','FormaPagoController@destroy')

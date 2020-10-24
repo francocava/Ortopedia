@@ -15,7 +15,7 @@ class ProductoController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json(Producto::all());
     }
 
     
@@ -46,9 +46,9 @@ class ProductoController extends Controller
      * @param  \App\Producto  $producto
      * @return \Illuminate\Http\Response
      */
-    public function show(Producto $producto)
+    public function show($id)
     {
-        //
+        return response()->json(Producto::findOrFail($id));
     }
 
     /**
@@ -69,8 +69,11 @@ class ProductoController extends Controller
      * @param  \App\Producto  $producto
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Producto $producto)
+    public function destroy($id)
     {
-        //
+        $producto = Producto::findOrFail($id);
+        $producto->delete();
+
+        return response()->json($producto);
     }
 }

@@ -40,9 +40,9 @@ class ObraSocialController extends Controller
      * @param  \App\ObraSocial  $obraSocial
      * @return \Illuminate\Http\Response
      */
-    public function show(ObraSocial $obraSocial)
+    public function show($id)
     {
-        //
+        return response()->json(ObraSocial::findOrFail($id));
     }
 
 
@@ -64,8 +64,11 @@ class ObraSocialController extends Controller
      * @param  \App\ObraSocial  $obraSocial
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ObraSocial $obraSocial)
+    public function destroy($id)
     {
-        //
+        $obraSocial = ObraSocial::findOrFail($id);
+        $obraSocial->delete();
+
+        return response()->json($obraSocial);
     }
 }

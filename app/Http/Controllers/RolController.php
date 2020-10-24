@@ -37,6 +37,12 @@ class RolController extends Controller
     }
 
     
+    public function show($id)
+    {
+        return response()->json(Rol::findOrFail($id));
+    }
+
+
     /**
      * Update the specified resource in storage.
      *
@@ -55,8 +61,11 @@ class RolController extends Controller
      * @param  \App\Rol  $rol
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Rol $rol)
+    public function destroy($id)
     {
-        //
+        $rol = Rol::findOrFail($id);
+        $rol->delete();
+
+        return response()->json($rol);
     }
 }

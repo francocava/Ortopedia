@@ -41,7 +41,10 @@ class UsuarioController extends Controller
         return response()->json($usuario);
     }
 
-    
+    public function show($id)
+    {
+        return response()->json(Usuario::findOrFail($id));
+    }
 
     /**
      * Update the specified resource in storage.
@@ -61,8 +64,11 @@ class UsuarioController extends Controller
      * @param  \App\Usuario  $usuario
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Usuario $usuario)
+    public function destroy($id)
     {
-        //
+        $usuario = Usuario::findOrFail($id);
+        $usuario->delete();
+
+        return response()->json($usuario);
     }
 }

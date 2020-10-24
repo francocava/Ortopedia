@@ -40,9 +40,9 @@ class ProveedorController extends Controller
      * @param  \App\Proveedor  $proveedor
      * @return \Illuminate\Http\Response
      */
-    public function show(Proveedor $proveedor)
+    public function show($id)
     {
-        //
+        return response()->json(Proveedor::findOrFail($id));
     }
 
     /**
@@ -63,8 +63,11 @@ class ProveedorController extends Controller
      * @param  \App\Proveedor  $proveedor
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Proveedor $proveedor)
+    public function destroy($id)
     {
-        //
+        $proveedor = Proveedor::findOrFail($id);
+        $proveedor->delete();
+
+        return response()->json($proveedor);
     }
 }

@@ -44,21 +44,11 @@ class CobroController extends Controller
      * @param  \App\Cobro  $cobro
      * @return \Illuminate\Http\Response
      */
-    public function show(Cobro $cobro)
+    public function show($id)
     {
-        //
+        return response()->json(Cobro::findOrFail($id));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Cobro  $cobro
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Cobro $cobro)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -78,8 +68,11 @@ class CobroController extends Controller
      * @param  \App\Cobro  $cobro
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Cobro $cobro)
+    public function destroy($id)
     {
-        //
+        $cobro = Cobro::findOrFail($id);
+        $cobro->delete();
+
+        return response()->json($cobro);
     }
 }

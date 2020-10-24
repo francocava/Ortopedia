@@ -46,11 +46,9 @@ class AccesorioController extends Controller
      * @param  \App\Accesorio  $accesorio
      * @return \Illuminate\Http\Response
      */
-    public function show(Accesorio $accesorio)
+    public function show($id)
     {
-        $acc = Accesorio::findOrFail($accesorio->id);
-
-        return response()->json($acc);
+        return response()->json(Accesorio::findOrFail($id));
     }
 
     /**
@@ -71,8 +69,11 @@ class AccesorioController extends Controller
      * @param  \App\Accesorio  $accesorio
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Accesorio $accesorio)
+    public function destroy($id)
     {
-        //
+        $accesorio = Accesorio::findOrFail($id);
+        $accesorio->delete();
+
+        return response()->json($accesorio);
     }
 }

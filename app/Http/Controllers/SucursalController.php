@@ -39,9 +39,9 @@ class SucursalController extends Controller
      * @param  \App\Sucursal  $sucursal
      * @return \Illuminate\Http\Response
      */
-    public function show(Sucursal $sucursal)
+    public function show($id)
     {
-        //
+        return response()->json(Sucursal::findOrFail($id));
     }
 
     /**
@@ -62,8 +62,11 @@ class SucursalController extends Controller
      * @param  \App\Sucursal  $sucursal
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Sucursal $sucursal)
+    public function destroy($id)
     {
-        //
+        $sucursal = Sucursal::findOrFail($id);
+        $sucursal->delete();
+
+        return response()->json($sucursal);
     }
 }
