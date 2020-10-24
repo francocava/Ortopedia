@@ -63,13 +63,24 @@ class PagoController extends Controller
      */
     public function update(Request $request, Pago $pago)
     {
-        //
+        $pedido = Pedido::findOrFail($request->pedido_id);
+        $formaPago = FormaPago::findOrFail($request->forma_pago_id);
+        $proveedor = Proveedor::findOrFail($request->proveedor_id);
+        $pago->monto = $request->monto;
+        //probar con dissasociate si no funca
+        $pago->pedido()->associate($pedido);
+        $pago->formaPago()->associate($formaPago);
+        $pago->proveedor()->associate($proveedor);
+        $pago->save();
+
+        return response()->json($pago);
+
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Pago  $pago
+     * @param $id 
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

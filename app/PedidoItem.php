@@ -10,11 +10,11 @@ class PedidoItem extends Model
     use SoftDeletes;
 
     public function producto() {
-        return $this -> belongsTo('App\Producto');
-        }
+        return $this->belongsTo('App\Producto');
+    }
 
     public function pedido() {
-        return $this-> belongsTo('App\Pedido');
+        return $this->belongsTo('App\Pedido');
     }
 
     public function pedidoItemAccesorio() {

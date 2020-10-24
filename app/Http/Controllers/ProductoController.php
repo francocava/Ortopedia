@@ -27,12 +27,18 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
+        //return response()->json($request);
         $producto = new Producto();
         $proveedor = Proveedor::findOrFail($request->proveedor_id);
 
         $producto->nroArticulo = $request->nroArticulo;
         $producto->descripcion = $request->descripcion;
         $producto->precio = $request->precio;
+
+        /*
+        $user = App\Models\User::find(1);
+        $user->roles()->attach($roleId);
+        */
 
         $producto->proveedor()->associate($proveedor);
         $producto->save();
