@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Accesorio;
 use App\Producto;
 use App\Proveedor;
 use Illuminate\Http\Request;
@@ -18,7 +19,6 @@ class ProductoController extends Controller
         return response()->json(Producto::all());
     }
 
-    
     /**
      * Store a newly created resource in storage.
      *
@@ -27,19 +27,18 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
-        //return response()->json($request);
         $producto = new Producto();
         $proveedor = Proveedor::findOrFail($request->proveedor_id);
 
+        $accesorios = explode(',',$request->accesorios);
         $producto->nroArticulo = $request->nroArticulo;
         $producto->descripcion = $request->descripcion;
         $producto->precio = $request->precio;
 
-        /*
-        $user = App\Models\User::find(1);
-        $user->roles()->attach($roleId);
-        */
-
+        foreach($accesorios as $accesorio_id) {
+            $producto->accesorio()->attach($accesorio_id);
+        }
+       
         $producto->proveedor()->associate($proveedor);
         $producto->save();
 

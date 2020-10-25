@@ -55,7 +55,16 @@ class UsuarioController extends Controller
      */
     public function update(Request $request, Usuario $usuario)
     {
-        //
+        $rol = Rol::findOrFail($request->rol_id);
+
+        $usuario->nombre = $request->nombre;
+        $usuario->apellido = $request->apellido;
+        $usuario->usuario = $request->usuario;
+        $usuario->password = $request->password;
+
+        $rol->usuario()->save($usuario);
+
+        return response()->json($usuario);
     }
 
     /**

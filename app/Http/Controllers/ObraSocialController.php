@@ -55,7 +55,11 @@ class ObraSocialController extends Controller
      */
     public function update(Request $request, ObraSocial $obraSocial)
     {
-        //
+        $obraSocial->nombre = $request->nombre;
+
+        $obraSocial->save();
+
+        return response()->json($obraSocial);
     }
 
     /**

@@ -63,7 +63,18 @@ class CobroController extends Controller
      */
     public function update(Request $request, Cobro $cobro)
     {
-        //
+        $pedido = Pedido::findOrFail($request->pedido_id);
+        $formaPago = FormaPago::findOrFail($request->forma_pago_id);
+
+        $cobro->monto = $request->monto;
+
+        $pedido->cobro();
+        $formaPago->cobro();
+        $cobro->save();
+
+        //testear cuando tenga seeds (el associate en el controller de cliente rompia)
+
+        return response()->json($cobro);
     }
 
     /**

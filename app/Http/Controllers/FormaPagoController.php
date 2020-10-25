@@ -53,7 +53,10 @@ class FormaPagoController extends Controller
      */
     public function update(Request $request, FormaPago $formaPago)
     {
-        //
+        $formaPago->tipo = $request->tipo;
+        $formaPago->save();
+
+        return response()->json($formaPago);
     }
 
     /**

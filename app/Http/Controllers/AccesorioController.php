@@ -29,10 +29,15 @@ class AccesorioController extends Controller
     {
         $accesorio = new Accesorio();
         $proveedor = Proveedor::findOrFail($request->proveedor_id);
+        $productos = explode(',',$request->productos);
 
         $accesorio->nroArticulo = $request->nroArticulo;
         $accesorio->descripcion = $request->descripcion;
         $accesorio->precio = $request->precio;
+
+        foreach($productos as $producto_id) {
+            $accesorio->producto()->attach($producto_id);
+        }
 
         $accesorio->proveedor()->associate($proveedor);
         $accesorio->save();
@@ -60,7 +65,7 @@ class AccesorioController extends Controller
      */
     public function update(Request $request, Accesorio $accesorio)
     {
-        //
+        // $user->roles()->detach(); //puede ser rol si le pones uno especifico
     }
 
     /**

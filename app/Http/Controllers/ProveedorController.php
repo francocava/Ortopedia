@@ -54,7 +54,11 @@ class ProveedorController extends Controller
      */
     public function update(Request $request, Proveedor $proveedor)
     {
-        //
+        $proveedor->nombre = $request->nombre;
+
+        $proveedor->save();
+
+        return response()->json($proveedor);
     }
 
     /**

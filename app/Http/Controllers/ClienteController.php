@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Cliente;
 use App\ObraSocial;
+use Facade\FlareClient\Http\Client;
 use Illuminate\Http\Request;
 
 class ClienteController extends Controller
@@ -65,9 +66,21 @@ class ClienteController extends Controller
      * @param  \App\Cliente  $cliente
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Cliente $cliente)
+    public function update(Request $request,Cliente $cliente)
     {
-        //
+        $obraSocial = ObraSocial::findOrFail($request->obra_id);
+
+        $cliente->nombre = $request->nombre;
+        $cliente->nombre = $request->nombre;
+        $cliente->apellido = $request->apellido;
+        $cliente->dni = $request->dni;
+        $cliente->contacto = $request->contacto;
+        $cliente->telefono = $request->telefono;
+        $cliente->nroAfiliado = $request->nroAfiliado;
+
+        $obraSocial->cliente()->save($cliente);
+
+        return response()->json($cliente);
     }
 
     /**

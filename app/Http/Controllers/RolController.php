@@ -52,7 +52,11 @@ class RolController extends Controller
      */
     public function update(Request $request, Rol $rol)
     {
-        //
+        $rol->descripcion = $request->descripcion;
+
+        $rol->save();
+
+        return response()->json($rol);
     }
 
     /**
