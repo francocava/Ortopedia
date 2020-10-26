@@ -159,7 +159,7 @@ class DatabaseSeeder extends Seeder
             'id' => '1',
             'total_sin_iva' => '32',
             'total_con_iva' => '234',
-            'fecha_fac' => date('10/23/2020'),
+            'fecha_fac' => '2020/10/23',
             'importe' => '232',
             'fl/ct' => 'fl'
         ]);
@@ -171,13 +171,49 @@ class DatabaseSeeder extends Seeder
             'estado_id' => '1',
             'usuario_id' => '2',
             'fac_id' => '1',
-            'fecha_ingreso_autorizacion' => date('22/10/2020'),
-            'fecha_retiro' => '22/11//2020',
+            'fecha_ingreso_autorizacion' => '2020/10/22',
+            'fecha_retiro' => '2020/11/22',
             'importe_fac' => '324235',
             'fl/ct' => 'fl',
             'nro_recibo_proveedor' => '32434',
-            'cancelado' => 'false'
+            'cancelado' => false
         ]);
+
+        DB::table('pedido_items')->insert([
+            'id' => '1',
+            'producto_id' => '1',
+            'pedido_id' => '1',
+            'precio' => '43000',
+            'porcentajeOS' => '25'
+        ]);
+
+        DB::table('pedido_item_accesorios')->insert([
+            'id' => '1',
+            'pedido_item_id' => '1',
+            'accesorio_id' => '1',
+        ]);
+
+        DB::table('pedido_item_accesorios')->insert([
+            'id' => '2',
+            'pedido_item_id' => '1',
+            'accesorio_id' => '2',
+        ]);
+
+        DB::table('cobros')->insert([
+            'id' => '1',
+            'pedido_id' => '1',
+            'forma_pago_id' => '2',
+            'monto' => '3455'
+        ]);
+
+        DB::table('pagos')->insert([
+            'id' => '1',
+            'pedido_id' => '1',
+            'proveedor_id' => '1',
+            'forma_pago_id' => '1',
+            'monto' => '3455'
+        ]);
+
 
     }
 }
