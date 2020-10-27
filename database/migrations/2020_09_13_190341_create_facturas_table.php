@@ -19,7 +19,7 @@ class CreateFacturasTable extends Migration
             $table->float('total_con_iva');
             $table->date('fecha_fac');
             $table->float('importe');
-            $table->string('fl/ct');
+            $table->string('fl_ct');
             $table->timestamps();
             $table->softDeletes();
         });

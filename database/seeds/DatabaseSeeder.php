@@ -161,7 +161,7 @@ class DatabaseSeeder extends Seeder
             'total_con_iva' => '234',
             'fecha_fac' => '2020/10/23',
             'importe' => '232',
-            'fl/ct' => 'fl'
+            'fl_ct' => 'fl'
         ]);
 
         DB::table('pedidos')->insert([
