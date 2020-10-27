@@ -66,6 +66,22 @@ class AccesorioController extends Controller
     public function update(Request $request, Accesorio $accesorio)
     {
         // $user->roles()->detach(); //puede ser rol si le pones uno especifico (esto lo saque de la docu)
+        $proveedor = Proveedor::findOrFail($request->proveedor_id);
+        $productos = explode(',',$request->productos);
+
+        $accesorio->nroArticulo = $request->nroArticulo;
+        $accesorio->descripcion = $request->descripcion;
+        $accesorio->precio = $request->precio;
+
+        $accesorio->producto()->detach(); //deberia sacarle todos sus productos
+
+        foreach($productos as $producto_id) {
+            $accesorio->producto()->attach($producto_id);
+        }
+
+        $proveedor->accesorio()->save($accesorio);
+
+        return response()->json($accesorio);
     }
 
     /**

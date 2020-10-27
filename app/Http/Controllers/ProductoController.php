@@ -65,7 +65,21 @@ class ProductoController extends Controller
      */
     public function update(Request $request, Producto $producto)
     {
-        //
+        $proveedor = Proveedor::findOrFail($request->proveedor_id);
+
+        $accesorios = explode(',',$request->accesorios);
+        $producto->nroArticulo = $request->nroArticulo;
+        $producto->descripcion = $request->descripcion;
+        $producto->precio = $request->precio;
+        $producto->accesorio()->detach(); //deberia sacarle todos sus accesorios
+
+        foreach($accesorios as $accesorio_id) { 
+            $producto->accesorio()->attach($accesorio_id); //le pone los nuevos
+        }
+       
+        $proveedor->producto()->save($producto);
+
+        return response()->json($producto);
     }
 
     /**

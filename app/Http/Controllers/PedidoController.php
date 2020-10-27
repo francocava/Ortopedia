@@ -86,7 +86,22 @@ class PedidoController extends Controller
      */
     public function update(Request $request, Pedido $pedido)
     {
-        //
+        $productos = explode(',',$request->productos);
+        $accesorios = explode(',',$request->accesorios);
+
+        //Para modificar un pedido_item y un pedido_item_accesorio hay que ir a su correspondiente controller
+
+        $pedido->clie_id = $request->clie_id;
+        $pedido->suc_id = $request->suc_id;
+        $pedido->estado_id = $request->estado_id;
+        $pedido->usuario_id = $request->usuario_id;
+        $pedido->fac_id = $request->fac_id;
+        $pedido->fecha_ingreso_autorizacion = $request->fecha_ingreso_autorizacion;
+        $pedido->fecha_retiro = $request->fecha_retiro;
+        $pedido->importe_fac = $request->importe_fac;
+        $pedido->fl_ct = $request->fl_ct;
+        $pedido->nro_recibo_proveedor = $request->nro_recibo_proveedor;
+        $pedido->cancelado = $request->cancelado;
     }
 
     /**
