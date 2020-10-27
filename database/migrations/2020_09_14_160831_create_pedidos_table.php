@@ -23,7 +23,7 @@ class CreatePedidosTable extends Migration
             $table->date('fecha_ingreso_autorizacion');
             $table->date('fecha_retiro');
             $table->float('importe_fac');
-            $table->string('fl/ct');
+            $table->string('fl_ct');
             $table->bigInteger('nro_recibo_proveedor');
             $table->boolean('cancelado');
             $table->timestamps();

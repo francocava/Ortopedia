@@ -65,7 +65,7 @@ class AccesorioController extends Controller
      */
     public function update(Request $request, Accesorio $accesorio)
     {
-        // $user->roles()->detach(); //puede ser rol si le pones uno especifico
+        // $user->roles()->detach(); //puede ser rol si le pones uno especifico (esto lo saque de la docu)
     }
 
     /**

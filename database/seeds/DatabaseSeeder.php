@@ -174,7 +174,7 @@ class DatabaseSeeder extends Seeder
             'fecha_ingreso_autorizacion' => '2020/10/22',
             'fecha_retiro' => '2020/11/22',
             'importe_fac' => '324235',
-            'fl/ct' => 'fl',
+            'fl_ct' => 'fl',
             'nro_recibo_proveedor' => '32434',
             'cancelado' => false
         ]);

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Accesorio;
 use App\Pedido;
 use App\PedidoItem;
+use App\PedidoItemAccesorio;
 use App\Producto;
 use Illuminate\Http\Request;
 
@@ -17,7 +18,7 @@ class PedidoController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json(Pedido::all());
     }
 
     /**
@@ -29,21 +30,39 @@ class PedidoController extends Controller
     public function store(Request $request)
     {
         $pedido = new Pedido();
+        $productos = explode(',',$request->productos);
+        $accesorios = explode(',',$request->accesorios);
 
-        //for each...
-        $producto = Producto::findOrFail($request->prod_id);
-        $accesorio = Accesorio::findOrFail($request->acc_id);
+        foreach($productos as $producto_id) {
+            // Aca me tiene que guardar cada producto en pedido_items
+            $producto = Producto::findOrFail($producto_id);
+            $pedidoItem = new PedidoItem();
+            $pedidoItem->producto_id = $producto->id;
+            $pedidoItem->precio = $producto->precio;
 
-        $pedido->fecha_ingreso_aut = $request->fecha_ingreso_aut;
+            foreach($accesorios as $acc_id) {
+                // y aca cada accesorio en pedido_item_accesorios
+                // cada pedido_item_accesorio se corresponde con un pedido_item especifico y 
+                // no se relaciona directamente con el pedido
+                $accesorio = Accesorio::findOrFail($acc_id);
+                $pedido_item_accesorio = new PedidoItemAccesorio();
 
-        $pedidoItem = new PedidoItem();
-        $pedidoItem->producto_id = $producto->id;
-        $pedidoItem->precio = $producto->precio;
+                $pedido_item_accesorio->pedido_item_id = $pedidoItem->id;
+                $pedido_item_accesorio->accesorio_id = $accesorio->id;
+            }
+        }
 
-        //for each accesorios 
-
-        //
-
+        $pedido->clie_id = $request->clie_id;
+        $pedido->suc_id = $request->suc_id;
+        $pedido->estado_id = $request->estado_id;
+        $pedido->usuario_id = $request->usuario_id;
+        $pedido->fac_id = $request->fac_id;
+        $pedido->fecha_ingreso_autorizacion = $request->fecha_ingreso_autorizacion;
+        $pedido->fecha_retiro = $request->fecha_retiro;
+        $pedido->importe_fac = $request->importe_fac;
+        $pedido->fl_ct = $request->fl_ct;
+        $pedido->nro_recibo_proveedor = $request->nro_recibo_proveedor;
+        $pedido->cancelado = $request->cancelado;
 
     }
 
@@ -53,9 +72,9 @@ class PedidoController extends Controller
      * @param  \App\Pedido  $pedido
      * @return \Illuminate\Http\Response
      */
-    public function show(Pedido $pedido)
+    public function show($id)
     {
-        //
+        return response()->json(Pedido::findOrFail($id));
     }
 
     /**
@@ -76,8 +95,11 @@ class PedidoController extends Controller
      * @param  \App\Pedido  $pedido
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Pedido $pedido)
+    public function destroy($id)
     {
-        //
+        $pedido = Pedido::findOrFail($id);
+        $pedido->delete();
+
+        return response()->json($pedido);
     }
 }
