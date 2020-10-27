@@ -30,3 +30,4 @@ Route::apiResource('/accesorio','AccesorioController');
 Route::apiResource('/producto','ProductoController');
 Route::apiResource('/formaPago','FormaPagoController');
 Route::apiResource('/pago','PagoController');
+Route::apiResource('/cobro','CobroController');

@@ -68,11 +68,8 @@ class CobroController extends Controller
 
         $cobro->monto = $request->monto;
 
-        $pedido->cobro();
-        $formaPago->cobro();
-        $cobro->save();
-
-        //testear cuando tenga seeds (el associate en el controller de cliente rompia)
+        $pedido->cobro()->save($cobro);
+        $formaPago->cobro()->save($cobro);
 
         return response()->json($cobro);
     }

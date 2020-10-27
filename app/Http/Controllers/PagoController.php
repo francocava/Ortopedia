@@ -68,10 +68,9 @@ class PagoController extends Controller
         $pago->monto = $request->monto;
         
         //puede que rompa genera mal el nombre los ids 
-        $pago->pedido()->associate($pedido);
-        $pago->formaPago()->associate($formaPago);
-        $pago->proveedor()->associate($proveedor);
-        $pago->save();
+        $pedido->pago()->save($pago);
+        $formaPago->pago()->save($pago);
+        $proveedor->pago()->save($pago);
 
         return response()->json($pago);
 
