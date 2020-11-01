@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\UsuarioController;
+use App\Pedido;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -31,3 +33,4 @@ Route::apiResource('/producto','ProductoController');
 Route::apiResource('/formaPago','FormaPagoController');
 Route::apiResource('/pago','PagoController');
 Route::apiResource('/cobro','CobroController');
+Route::apiResource('/pedido','PedidoController');

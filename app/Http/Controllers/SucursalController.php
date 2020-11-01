@@ -53,7 +53,12 @@ class SucursalController extends Controller
      */
     public function update(Request $request, Sucursal $sucursal)
     {
-        //
+        $sucursal->nombre = $request->nombre;
+        $sucursal->save();
+
+        logger($request);
+
+        return response()->json($sucursal);
     }
 
     /**
