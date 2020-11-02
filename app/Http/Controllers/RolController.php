@@ -29,7 +29,7 @@ class RolController extends Controller
     {
         $rol = new Rol();
 
-        $rol->descripcion = $request->descripcion;
+        $rol->nombre = $request->nombre;
 
         $rol->save();
 
@@ -52,7 +52,7 @@ class RolController extends Controller
      */
     public function update(Request $request, Rol $rol)
     {
-        $rol->descripcion = $request->descripcion;
+        $rol->nombre = $request->nombre;
 
         $rol->save();
 

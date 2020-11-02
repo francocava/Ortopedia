@@ -17,7 +17,7 @@ class CreateAccesoriosTable extends Migration
             $table->id();
             $table->foreignId('proveedor_id');
             $table->integer('nroArticulo')->nullable();
-            $table->string('descripcion');
+            $table->string('nombre');
             $table->float('precio')->nullable();
             $table->timestamps();
             $table->softDeletes();

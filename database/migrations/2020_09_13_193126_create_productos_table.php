@@ -17,7 +17,7 @@ class CreateProductosTable extends Migration
         Schema::create('productos', function (Blueprint $table) {
             $table->id();
             $table->foreignId('proveedor_id');
-            $table->string('descripcion');
+            $table->string('nombre');
             $table->float('precio')->nullable();
             $table->integer('nroArticulo')->nullable();
             $table->timestamps();

@@ -32,7 +32,7 @@ class AccesorioController extends Controller
         $productos = explode(',',$request->productos);
 
         $accesorio->nroArticulo = $request->nroArticulo;
-        $accesorio->descripcion = $request->descripcion;
+        $accesorio->nombre = $request->nombre;
         $accesorio->precio = $request->precio;
 
         foreach($productos as $producto_id) {
@@ -70,7 +70,7 @@ class AccesorioController extends Controller
         $productos = explode(',',$request->productos);
 
         $accesorio->nroArticulo = $request->nroArticulo;
-        $accesorio->descripcion = $request->descripcion;
+        $accesorio->nombre = $request->nombre;
         $accesorio->precio = $request->precio;
 
         $accesorio->producto()->detach(); //deberia sacarle todos sus productos

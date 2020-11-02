@@ -15,12 +15,12 @@ class DatabaseSeeder extends Seeder
     {
         DB::table('roles')->insert([
             'id' => '1',
-            'descripcion' => 'Admin',
+            'nombre' => 'Admin',
         ]);
 
         DB::table('roles')->insert([
             'id' => '2',
-            'descripcion' => 'Empleado',
+            'nombre' => 'Empleado',
         ]);
 
         DB::table('usuarios')->insert([
@@ -57,7 +57,7 @@ class DatabaseSeeder extends Seeder
             'nombre' => 'Pami',
         ]);
 
-        
+
         DB::table('sucursales')->insert([
             'nombre' => 'Floresta',
         ]);
@@ -87,11 +87,11 @@ class DatabaseSeeder extends Seeder
             'tipo' => 'Credito',
         ]);
 
-        
+
         DB::table('productos')->insert([
             'id' => '1',
             'proveedor_id' => '1',
-            'descripcion' => 'Silla de ruedas',
+            'nombre' => 'Silla de ruedas',
             'precio' => '43000',
             'nroArticulo' => '13',
         ]);
@@ -99,7 +99,7 @@ class DatabaseSeeder extends Seeder
         DB::table('productos')->insert([
             'id' => '2',
             'proveedor_id' => '2',
-            'descripcion' => 'Muletas',
+            'nombre' => 'Muletas',
             'precio' => '20000',
             //'nroArticulo' => '13',
         ]);
@@ -107,7 +107,7 @@ class DatabaseSeeder extends Seeder
         DB::table('accesorios')->insert([
             'id' => '1',
             'proveedor_id' => '1',
-            'descripcion' => 'Cabezal para silla',
+            'nombre' => 'Cabezal para silla',
             'precio' => '1500',
             'nroArticulo' => '21',
         ]);
@@ -115,7 +115,7 @@ class DatabaseSeeder extends Seeder
         DB::table('accesorios')->insert([
             'id' => '2',
             'proveedor_id' => '2',
-            'descripcion' => 'Bateria para silla',
+            'nombre' => 'Bateria para silla',
             'precio' => '4545',
             'nroArticulo' => '99',
         ]);
@@ -129,7 +129,7 @@ class DatabaseSeeder extends Seeder
             'accesorio_id' => '2',
             'producto_id' => '1'
         ]);
-        
+
         DB::table('clientes')->insert([
             'id' => '1',
             'nombre' => 'Franco',
@@ -152,7 +152,7 @@ class DatabaseSeeder extends Seeder
 
         DB::table('estados')->insert([
             'id' => '1',
-            'descripcion' => 'No'
+            'nombre' => 'No'
         ]);
 
         DB::table('facturas')->insert([
@@ -213,7 +213,5 @@ class DatabaseSeeder extends Seeder
             'forma_pago_id' => '1',
             'monto' => '3455'
         ]);
-
-
     }
 }
