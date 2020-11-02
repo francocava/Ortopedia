@@ -39,7 +39,7 @@ class ClienteController extends Controller
         $cliente->telefono = $request->telefono;
         $cliente->nroAfiliado = $request->nroAfiliado;
 
-        $obraSocial->cliente()->save($cliente);
+        $obraSocial->clientes()->save($cliente);
 
         return response()->json($cliente);
     }
@@ -75,7 +75,7 @@ class ClienteController extends Controller
         $cliente->telefono = $request->telefono;
         $cliente->nroAfiliado = $request->nroAfiliado;
 
-        $obraSocial->cliente()->save($cliente);
+        $obraSocial->clientes()->save($cliente);
 
         return response()->json($cliente);
     }

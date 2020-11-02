@@ -18,7 +18,6 @@ class AccesorioController extends Controller
         return response()->json(Accesorio::all());
     }
 
-    
     /**
      * Store a newly created resource in storage.
      *
@@ -29,7 +28,7 @@ class AccesorioController extends Controller
     {
         $accesorio = new Accesorio();
         $proveedor = Proveedor::findOrFail($request->proveedor_id);
-        $productos = explode(',',$request->productos);
+        $productos = explode(',', $request->productos);
 
         $accesorio->nroArticulo = $request->nroArticulo;
         $accesorio->nombre = $request->nombre;
