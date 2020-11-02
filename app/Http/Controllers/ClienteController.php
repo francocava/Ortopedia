@@ -40,9 +40,6 @@ class ClienteController extends Controller
         $cliente->nroAfiliado = $request->nroAfiliado;
 
         $obraSocial->cliente()->save($cliente);
-        //otra forma valida:
-        // $cliente->obraSocial()->associate($obraSocial);
-        // $cliente->save();
 
         return response()->json($cliente);
     }
