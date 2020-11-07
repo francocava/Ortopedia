@@ -10,13 +10,14 @@ class Cobro extends Model
     use SoftDeletes;
 
     protected $with = ['formaPago'];
-    
 
-    public function pedido() {
+    public function pedido()
+    {
         return $this->belongsTo('App\Pedido');
     }
 
-    public function formaPago() {
-        return $this -> belongsTo('App\FormaPago');
+    public function formaPago()
+    {
+        return $this->belongsTo('App\FormaPago');
     }
 }

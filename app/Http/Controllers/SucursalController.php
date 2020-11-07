@@ -16,7 +16,7 @@ class SucursalController extends Controller
     {
         return response(Sucursal::all());
     }
-   
+
     /**
      * Store a newly created resource in storage.
      *

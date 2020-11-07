@@ -41,14 +41,14 @@ class PedidoController extends Controller
            De ultima podemos seguir separando los accesorios de los productos pero sin relacionarlos
         */
 
-        foreach($productos as $producto_id) {
+        foreach ($productos as $producto_id) {
             // Aca me tiene que guardar cada producto en pedido_items
             $producto = Producto::findOrFail($producto_id);
             $pedidoItem = new PedidoItem();
             $pedidoItem->producto_id = $producto->id;
             $pedidoItem->precio = $producto->precio;
 
-            foreach($accesorios as $acc_id) {
+            foreach ($accesorios as $acc_id) {
                 // y aca cada accesorio en pedido_item_accesorios
                 // cada pedido_item_accesorio se corresponde con un pedido_item especifico y 
                 // no se relaciona directamente con el pedido
@@ -71,7 +71,6 @@ class PedidoController extends Controller
         $pedido->fl_ct = $request->fl_ct;
         $pedido->nro_recibo_proveedor = $request->nro_recibo_proveedor;
         $pedido->cancelado = $request->cancelado;
-
     }
 
     /**
@@ -94,8 +93,8 @@ class PedidoController extends Controller
      */
     public function update(Request $request, Pedido $pedido)
     {
-        $productos = explode(',',$request->productos);
-        $accesorios = explode(',',$request->accesorios);
+        $productos = explode(',', $request->productos);
+        $accesorios = explode(',', $request->accesorios);
 
         //Para modificar un pedido_item y un pedido_item_accesorio hay que ir a su correspondiente controller
 

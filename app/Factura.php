@@ -8,6 +8,4 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Factura extends Model
 {
     use SoftDeletes;
-
-
 }

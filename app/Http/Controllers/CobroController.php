@@ -39,7 +39,6 @@ class CobroController extends Controller
         $cobro->save();
 
         return response()->json($cobro);
-
     }
 
     /**

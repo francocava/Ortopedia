@@ -34,7 +34,7 @@ class RolController extends Controller
         return response()->json($rol);
     }
 
-    
+
     public function show($id)
     {
         return response()->json(Rol::findOrFail($id));

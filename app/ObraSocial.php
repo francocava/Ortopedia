@@ -11,7 +11,8 @@ class ObraSocial extends Model
 
     protected $table = 'obras_sociales';
 
-    public function clientes() {
+    public function clientes()
+    {
         return $this->hasMany('App\Cliente', 'obra_id');
     }
 }

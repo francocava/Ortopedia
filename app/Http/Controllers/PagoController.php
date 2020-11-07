@@ -66,14 +66,13 @@ class PagoController extends Controller
         $formaPago = FormaPago::findOrFail($request->forma_pago_id);
         $proveedor = Proveedor::findOrFail($request->proveedor_id);
         $pago->monto = $request->monto;
-        
+
         //puede que rompa genera mal el nombre los ids 
         $pedido->pago()->save($pago);
         $formaPago->pago()->save($pago);
         $proveedor->pago()->save($pago);
 
         return response()->json($pago);
-
     }
 
     /**
