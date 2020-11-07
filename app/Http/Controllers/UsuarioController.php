@@ -15,7 +15,6 @@ class UsuarioController extends Controller
      */
     public function index()
     {
-        logger(Usuario::all());
         return response(Usuario::all());
     }
 
@@ -31,10 +30,15 @@ class UsuarioController extends Controller
         $usuario = new Usuario();
         $rol = Rol::findOrFail($request->rol_id);
 
+        $usuarioNuevo = substr($request->nombre,0,-strlen($request->nombre)+1);
+        $usuarioNuevo = strtolower($usuarioNuevo).($request->apellido);
+        //Me genera el nombre de usuario por ej: Nico Perez => nPerez
+
+
         $usuario->nombre = $request->nombre;
         $usuario->apellido = $request->apellido;
-        $usuario->usuario = $request->usuario;
-        $usuario->password = $request->password;
+        $usuario->usuario = $usuarioNuevo;
+        $usuario->password = "123456"; //password por defecto, despues se cambia
 
         $usuario->rol()->associate($rol);
         $usuario->save();
