@@ -15,6 +15,7 @@ class UsuarioController extends Controller
      */
     public function index()
     {
+        logger(Usuario::all());
         return response(Usuario::all());
     }
 

@@ -9,6 +9,8 @@ class Accesorio extends Model
 {
     use SoftDeletes;
 
+    protected $with = ['proveedor'];
+
     public function pedidoItemAccesorio() {
         return $this->hasMany('App\PedidoItemAccesorio');
     }

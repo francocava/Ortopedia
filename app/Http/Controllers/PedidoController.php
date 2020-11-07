@@ -30,8 +30,16 @@ class PedidoController extends Controller
     public function store(Request $request)
     {
         $pedido = new Pedido();
-        $productos = explode(',',$request->productos);
-        $accesorios = explode(',',$request->accesorios);
+        $productos = $request->productos;
+        $accesorios = $request->accesorios;
+
+        /* Me parece que lo mejor que podemos hacer aca es olvidarnos de los accesorios
+           y pensarlos como productos. Tenerlos anidados nos trae muchas complicaciones y
+           no necesariamente coincide con la realidad. De esta forma una persona no puede comprar
+           un accesorio unicamente o llevar un producto y un accesorio que no coincide.
+           Tambien nos haria la vida mucho mas facil jaja 
+           De ultima podemos seguir separando los accesorios de los productos pero sin relacionarlos
+        */
 
         foreach($productos as $producto_id) {
             // Aca me tiene que guardar cada producto en pedido_items

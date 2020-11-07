@@ -9,6 +9,8 @@ class Producto extends Model
 {
     use SoftDeletes;
 
+    protected $with = ['proveedor'];
+
     public function proveedor() {
         return $this->belongsTo('App\Proveedor');
     }

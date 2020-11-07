@@ -28,18 +28,18 @@ class AccesorioController extends Controller
     {
         $accesorio = new Accesorio();
         $proveedor = Proveedor::findOrFail($request->proveedor_id);
-        $productos = explode(',', $request->productos);
+        $productos = $request->productos;
 
         $accesorio->nroArticulo = $request->nroArticulo;
         $accesorio->nombre = $request->nombre;
         $accesorio->precio = $request->precio;
 
-        foreach($productos as $producto_id) {
-            $accesorio->producto()->attach($producto_id);
-        }
-
         $accesorio->proveedor()->associate($proveedor);
         $accesorio->save();
+
+        if ($productos && sizeof($productos)) foreach ($productos as $producto_id) {
+            $accesorio->producto()->attach($producto_id);
+        }
 
         return response()->json($accesorio);
     }
@@ -66,17 +66,19 @@ class AccesorioController extends Controller
     {
         // $user->roles()->detach(); //puede ser rol si le pones uno especifico (esto lo saque de la docu)
         $proveedor = Proveedor::findOrFail($request->proveedor_id);
-        $productos = explode(',',$request->productos);
+        //$productos = $request->productos;
 
         $accesorio->nroArticulo = $request->nroArticulo;
         $accesorio->nombre = $request->nombre;
         $accesorio->precio = $request->precio;
 
-        $accesorio->producto()->detach(); //deberia sacarle todos sus productos
+        //$accesorio->producto()->detach(); //deberia sacarle todos sus productos
 
-        foreach($productos as $producto_id) {
+        /*
+        foreach ($productos as $producto_id) {
             $accesorio->producto()->attach($producto_id);
         }
+        */ //Aca hay algo maaal por ahora solo se puede hacer update sin cambiar productos
 
         $proveedor->accesorio()->save($accesorio);
 

@@ -17,8 +17,6 @@ class RolController extends Controller
         return response(Rol::all());
     }
 
-    
-
     /**
      * Store a newly created resource in storage.
      *

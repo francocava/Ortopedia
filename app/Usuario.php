@@ -10,6 +10,7 @@ class Usuario extends Model
     use SoftDeletes;
 
     protected $table = 'Usuarios';
+    protected $with = ['Rol'];
 
     public function rol(){
         return $this->belongsTo('App\Rol');
