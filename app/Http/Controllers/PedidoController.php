@@ -33,8 +33,6 @@ class PedidoController extends Controller
         $productos = $request->productos;
         $accesorios = $request->accesorios;
 
-        logger($request);
-
         $pedido->clie_id = $request->clie_id;
         $pedido->suc_id = $request->suc_id;
         $pedido->estado_id = $request->estado_id; //Creo que estado esta de sobra 
@@ -101,11 +99,9 @@ class PedidoController extends Controller
      */
     public function update(Request $request, Pedido $pedido)
     {
-        $productos = explode(',', $request->productos);
-        $accesorios = explode(',', $request->accesorios);
-
-        //Para modificar un pedido_item y un pedido_item_accesorio hay que ir a su correspondiente controller
-
+        logger($request);
+        //Para modificar un pedido_item hay que ir a su correspondiente controller
+        $pedido->fl_ct = $request->fl_ct;
         $pedido->clie_id = $request->clie_id;
         $pedido->suc_id = $request->suc_id;
         $pedido->estado_id = $request->estado_id;
@@ -114,9 +110,12 @@ class PedidoController extends Controller
         $pedido->fecha_ingreso_autorizacion = $request->fecha_ingreso_autorizacion;
         $pedido->fecha_retiro = $request->fecha_retiro;
         $pedido->importe_fac = $request->importe_fac;
-        $pedido->fl_ct = $request->fl_ct;
         $pedido->nro_recibo_proveedor = $request->nro_recibo_proveedor;
         $pedido->cancelado = $request->cancelado;
+
+        $pedido->save();
+
+        return response()->json($pedido);
     }
 
     /**
