@@ -16,9 +16,9 @@ class Accesorio extends Model
      */
     protected $with = ['proveedor'];
 
-    public function pedidoItemAccesorio()
+    public function pedidoItem()
     {
-        return $this->hasMany('App\PedidoItemAccesorio');
+        return $this->hasMany('App\PedidoItem');
     }
 
     public function proveedor()

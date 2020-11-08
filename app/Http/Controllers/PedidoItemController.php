@@ -54,15 +54,18 @@ class PedidoItemController extends Controller
     public function update(Request $request, PedidoItem $pedidoItem)
     {
         $pedido = Pedido::findOrFail($request->pedido_id);
-        $producto = Producto::findOrFail($request->producto_id);
+        $item = null;
+        if($request->producto_id){
+            $item = Producto::findOrFail($request->producto_id); //es decir, si es un producto
+        } else {
+            $item = Producto::findOrFail($request->accesorio_id);
+        }
 
-        ///aca hay qye cambiar por eliminar item_accesorios
-
-        $pedidoItem->precio = $producto->precio;
+        $pedidoItem->precio = $item->precio;
         $pedidoItem->porcentajeOS = $request->porcentajeOS;
 
         $pedido->pedidoItem()->save($pedidoItem);
-        $producto->pedidoItem()->save($pedidoItem);
+        $item->pedidoItem()->save($pedidoItem);
 
 
         return response()->json($pedidoItem);

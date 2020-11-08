@@ -99,7 +99,6 @@ class PedidoController extends Controller
      */
     public function update(Request $request, Pedido $pedido)
     {
-        logger($request);
         //Para modificar un pedido_item hay que ir a su correspondiente controller
         $pedido->fl_ct = $request->fl_ct;
         $pedido->clie_id = $request->clie_id;
