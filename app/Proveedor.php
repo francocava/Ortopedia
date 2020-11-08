@@ -8,17 +8,21 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Proveedor extends Model
 {
     use SoftDeletes;
+
     protected $table = 'proveedores';
 
-    public function producto() {
+    public function producto()
+    {
         return $this->hasMany('App\Producto');
     }
 
-    public function accesorio() {
+    public function accesorio()
+    {
         return $this->hasMany('App\Accesorio');
     }
 
-    public function pago() {
+    public function pago()
+    {
         return $this->hasMany('App\Pago');
     }
 }

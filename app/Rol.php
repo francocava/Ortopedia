@@ -11,7 +11,8 @@ class Rol extends Model
 
     protected $table = 'roles';
 
-    public function usuario(){
+    public function usuario()
+    {
         return $this->hasMany('App\Usuario');
     }
 }

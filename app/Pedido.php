@@ -9,35 +9,43 @@ class Pedido extends Model
 {
     use SoftDeletes;
 
-    public function cliente() {
+    public function cliente()
+    {
         return $this->belongsTo('App\Cliente');
     }
 
-    public function usuario() {
+    public function usuario()
+    {
         return $this->belongsTo('App\Usuario');
     }
 
-    public function sucursal() {
+    public function sucursal()
+    {
         return $this->belongsTo('App\Sucursal');
     }
 
-    public function estado() {
+    public function estado()
+    {
         return $this->belongsTo('App\Estado');
     }
 
-    public function cobro() {
+    public function cobro()
+    {
         return $this->hasMany('App\Cobro');
     }
 
-    public function pago() {
+    public function pago()
+    {
         return $this->hasMany('App\Pago');
     }
 
-    public function pedidoItem() {
+    public function pedidoItem()
+    {
         return $this->hasMany('App\PedidoItem');
     }
 
-    public function factura(){
+    public function factura()
+    {
         return $this->hasOne('App\Factura');
     }
 }

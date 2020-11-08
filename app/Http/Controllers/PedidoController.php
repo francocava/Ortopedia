@@ -33,14 +33,6 @@ class PedidoController extends Controller
         $productos = $request->productos;
         $accesorios = $request->accesorios;
 
-        /* Me parece que lo mejor que podemos hacer aca es olvidarnos de los accesorios
-           y pensarlos como productos. Tenerlos anidados nos trae muchas complicaciones y
-           no necesariamente coincide con la realidad. De esta forma una persona no puede comprar
-           un accesorio unicamente o llevar un producto y un accesorio que no coincide.
-           Tambien nos haria la vida mucho mas facil jaja 
-           De ultima podemos seguir separando los accesorios de los productos pero sin relacionarlos
-        */
-
         $pedido->clie_id = $request->clie_id;
         $pedido->suc_id = $request->suc_id;
         $pedido->estado_id = $request->estado_id; //Creo que estado esta de mas 
@@ -60,6 +52,7 @@ class PedidoController extends Controller
                 // Aca me tiene que guardar cada producto en pedido_items
                 $producto = Producto::findOrFail($producto_id);
                 $pedidoItem = new PedidoItem();
+
                 $pedidoItem->pedido_id = $pedido->id;
                 $pedidoItem->producto_id = $producto->id;
                 $pedidoItem->precio = $producto->precio;
@@ -80,7 +73,6 @@ class PedidoController extends Controller
         }
         
         return response()->json($pedido);
-
     }
 
     /**
@@ -103,8 +95,8 @@ class PedidoController extends Controller
      */
     public function update(Request $request, Pedido $pedido)
     {
-        $productos = explode(',',$request->productos);
-        $accesorios = explode(',',$request->accesorios);
+        $productos = explode(',', $request->productos);
+        $accesorios = explode(',', $request->accesorios);
 
         //Para modificar un pedido_item y un pedido_item_accesorio hay que ir a su correspondiente controller
 

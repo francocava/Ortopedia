@@ -38,10 +38,10 @@ class ProductoController extends Controller
         $producto->proveedor()->associate($proveedor);
         $producto->save();
 
-        foreach($accesorios as $accesorio_id) {
+        foreach ($accesorios as $accesorio_id) {
             $producto->accesorio()->attach($accesorio_id);
         }
-       
+
         $producto->proveedor()->associate($proveedor);
         $producto->save();
 
@@ -77,11 +77,11 @@ class ProductoController extends Controller
         //$producto->accesorio()->detach(); //deberia sacarle todos sus accesorios
 
         /*
-        foreach($accesorios as $accesorio_id) { 
+        foreach($accesorios as $accesorio_id) {
             $producto->accesorio()->attach($accesorio_id); //le pone los nuevos
         }
         */ //Aca hay algo mal
-       
+
         $proveedor->producto()->save($producto);
 
         return response()->json($producto);

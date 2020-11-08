@@ -18,11 +18,13 @@ class Cliente extends Model
      */
     protected $with = ['obraSocial'];
 
-    public function pedido() {
+    public function pedido()
+    {
         return $this->hasMany('App\Pedido');
     }
 
-    public function obraSocial() {
+    public function obraSocial()
+    {
         return $this->belongsTo('App\ObraSocial', 'obra_id');
     }
 }

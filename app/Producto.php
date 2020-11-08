@@ -11,16 +11,18 @@ class Producto extends Model
 
     protected $with = ['proveedor'];
 
-    public function proveedor() {
+    public function proveedor()
+    {
         return $this->belongsTo('App\Proveedor');
     }
 
-    public function pedidoItem() {
+    public function pedidoItem()
+    {
         return $this->hasMany('App\PedidoItem');
     }
 
-    public function accesorio() {
+    public function accesorio()
+    {
         return $this->belongsToMany('App\Accesorio');
     }
-
 }

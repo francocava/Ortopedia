@@ -9,7 +9,8 @@ class Estado extends Model
 {
     use SoftDeletes;
 
-    public function pedido(){
+    public function pedido()
+    {
         return $this->hasMany('App\Pedido');
     }
 }

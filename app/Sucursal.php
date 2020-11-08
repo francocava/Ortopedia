@@ -9,9 +9,10 @@ class Sucursal extends Model
 {
     use SoftDeletes;
 
-    public function pedido() {
+    protected $table = 'sucursales';
+
+    public function pedido()
+    {
         return $this->hasMany('App\Pedido');
     }
-
-    protected $table = 'sucursales';
 }

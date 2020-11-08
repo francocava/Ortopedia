@@ -18,7 +18,6 @@ class UsuarioController extends Controller
         return response(Usuario::all());
     }
 
-    
     /**
      * Store a newly created resource in storage.
      *
@@ -30,10 +29,9 @@ class UsuarioController extends Controller
         $usuario = new Usuario();
         $rol = Rol::findOrFail($request->rol_id);
 
-        $usuarioNuevo = substr($request->nombre,0,-strlen($request->nombre)+1);
-        $usuarioNuevo = strtolower($usuarioNuevo).($request->apellido);
+        $usuarioNuevo = substr($request->nombre, 0, -strlen($request->nombre) + 1);
+        $usuarioNuevo = strtolower($usuarioNuevo) . ($request->apellido);
         //Me genera el nombre de usuario por ej: Nico Perez => nPerez
-
 
         $usuario->nombre = $request->nombre;
         $usuario->apellido = $request->apellido;

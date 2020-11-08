@@ -63,7 +63,7 @@ class ClienteController extends Controller
      * @param  \App\Cliente  $cliente
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,Cliente $cliente)
+    public function update(Request $request, Cliente $cliente)
     {
         $obraSocial = ObraSocial::findOrFail($request->obra_id);
 

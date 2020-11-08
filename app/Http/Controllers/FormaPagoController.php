@@ -17,7 +17,7 @@ class FormaPagoController extends Controller
         return response()->json(FormaPago::all());
     }
 
-    
+
     /**
      * Store a newly created resource in storage.
      *
@@ -75,5 +75,3 @@ class FormaPagoController extends Controller
         //La URI es api/formaPago/1
     }
 }
-
-

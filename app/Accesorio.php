@@ -9,17 +9,25 @@ class Accesorio extends Model
 {
     use SoftDeletes;
 
+    /**
+     * The relationships that should always be loaded.
+     *
+     * @var array
+     */
     protected $with = ['proveedor'];
 
-    public function pedidoItemAccesorio() {
+    public function pedidoItemAccesorio()
+    {
         return $this->hasMany('App\PedidoItemAccesorio');
     }
 
-    public function proveedor() {
+    public function proveedor()
+    {
         return $this->belongsTo('App\Proveedor');
     }
 
-    public function producto() {
+    public function producto()
+    {
         return $this->belongsToMany('App\Producto');
     }
 }

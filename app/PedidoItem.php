@@ -9,15 +9,18 @@ class PedidoItem extends Model
 {
     use SoftDeletes;
 
-    public function producto() {
+    public function producto()
+    {
         return $this->belongsTo('App\Producto');
     }
 
-    public function pedido() {
+    public function pedido()
+    {
         return $this->belongsTo('App\Pedido');
     }
 
-    public function pedidoItemAccesorio() {
+    public function pedidoItemAccesorio()
+    {
         return $this->hasMany('App\PedidoItemAccesorio');
     }
 }
