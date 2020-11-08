@@ -9,6 +9,8 @@ class PedidoItem extends Model
 {
     use SoftDeletes;
 
+    protected $with = ['producto:id,nombre','accesorio:id,nombre']; //poniendolo asi solo me trae el nombre
+
     public function producto()
     {
         return $this->belongsTo('App\Producto');
@@ -19,8 +21,8 @@ class PedidoItem extends Model
         return $this->belongsTo('App\Pedido');
     }
 
-    public function pedidoItemAccesorio()
+    public function accesorio()
     {
-        return $this->hasMany('App\PedidoItemAccesorio');
+        return $this->belongsTo('App\Accesorio');
     }
 }
