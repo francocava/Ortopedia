@@ -17,14 +17,14 @@ class CreatePedidosTable extends Migration
             $table->id();
             $table->foreignId('clie_id');
             $table->foreignId('suc_id');
-            $table->foreignId('estado_id');
+            $table->foreignId('estado_id')->nullable();
             $table->foreignId('usuario_id');
-            $table->foreignId('fac_id');
+            $table->foreignId('fac_id')->nullable();
             $table->date('fecha_ingreso_autorizacion');
             $table->date('fecha_retiro');
-            $table->float('importe_fac');
+            $table->float('importe_fac')->nullable();
             $table->string('fl_ct');
-            $table->bigInteger('nro_recibo_proveedor');
+            $table->bigInteger('nro_recibo_proveedor')->nullable();
             $table->boolean('cancelado');
             $table->timestamps();
             $table->softDeletes();

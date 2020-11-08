@@ -33,9 +33,11 @@ class PedidoController extends Controller
         $productos = $request->productos;
         $accesorios = $request->accesorios;
 
+        logger($request);
+
         $pedido->clie_id = $request->clie_id;
         $pedido->suc_id = $request->suc_id;
-        $pedido->estado_id = $request->estado_id; //Creo que estado esta de mas 
+        $pedido->estado_id = $request->estado_id; //Creo que estado esta de sobra 
         $pedido->usuario_id = $request->usuario_id;
         $pedido->fac_id = $request->fac_id;
         $pedido->fecha_ingreso_autorizacion = $request->fecha_ingreso_autorizacion;
@@ -43,7 +45,7 @@ class PedidoController extends Controller
         $pedido->importe_fac = $request->importe_fac;
         $pedido->fl_ct = $request->fl_ct;
         $pedido->nro_recibo_proveedor = $request->nro_recibo_proveedor;
-        $pedido->cancelado = "No"; //Como es un pedido nuevo por defecto esta en NO, cuando se edita se pasa a Si
+        $pedido->cancelado = false; //Como es un pedido nuevo por defecto esta en NO, cuando se edita se pasa a Si
 
         $pedido->save();
 

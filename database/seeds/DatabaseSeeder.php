@@ -187,16 +187,22 @@ class DatabaseSeeder extends Seeder
             'porcentajeOS' => '25'
         ]);
 
-        DB::table('pedido_item_accesorios')->insert([
-            'id' => '1',
-            'pedido_item_id' => '1',
+        DB::table('pedido_items')->insert([
+            'id' => '2',
+            'producto_id' => null,
             'accesorio_id' => '1',
+            'pedido_id' => '1',
+            'precio' => '1500',
+            'porcentajeOS' => '30'
         ]);
 
-        DB::table('pedido_item_accesorios')->insert([
-            'id' => '2',
-            'pedido_item_id' => '1',
+        DB::table('pedido_items')->insert([
+            'id' => '3',
+            'producto_id' => null,
             'accesorio_id' => '2',
+            'pedido_id' => '1',
+            'precio' => '4545',
+            'porcentajeOS' => '20'
         ]);
 
         DB::table('cobros')->insert([
