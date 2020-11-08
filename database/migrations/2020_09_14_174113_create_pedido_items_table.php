@@ -15,9 +15,10 @@ class CreatePedidoItemsTable extends Migration
     {
         Schema::create('pedido_items', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('producto_id');
+            $table->foreignId('producto_id')->nullable();
+            $table->foreignId('accesorio_id')->nullable();
             $table->foreignId('pedido_id');
-            $table->float('precio');
+            $table->float('precio')->nullable();
             $table->integer('porcentajeOS')->nullable();
             $table->timestamps();
             $table->softDeletes();
@@ -29,6 +30,11 @@ class CreatePedidoItemsTable extends Migration
 
             $table->foreign('producto_id')
                 ->references('id')->on('productos')
+                ->onUpdate('cascade')
+                ->onDelete('restrict');
+
+            $table->foreign('accesorio_id')
+                ->references('id')->on('accesorios')
                 ->onUpdate('cascade')
                 ->onDelete('restrict');
         });

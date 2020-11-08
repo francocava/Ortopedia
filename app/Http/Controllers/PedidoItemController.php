@@ -56,6 +56,8 @@ class PedidoItemController extends Controller
         $pedido = Pedido::findOrFail($request->pedido_id);
         $producto = Producto::findOrFail($request->producto_id);
 
+        ///aca hay qye cambiar por eliminar item_accesorios
+
         $pedidoItem->precio = $producto->precio;
         $pedidoItem->porcentajeOS = $request->porcentajeOS;
 
