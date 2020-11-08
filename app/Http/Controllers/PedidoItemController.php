@@ -61,11 +61,16 @@ class PedidoItemController extends Controller
             $item = Producto::findOrFail($request->accesorio_id);
         }
 
-        $pedidoItem->precio = $item->precio;
-        $pedidoItem->porcentajeOS = $request->porcentajeOS;
+        $pedidoItem->precio_item = $request->precio_item;
+        $pedidoItem->porcentaje_os = $request->porcentaje_os;
 
+        $descuento = ($request->precio_item)*($request->porcentaje_os/100);
+
+        $pedidoItem->precio_final = ($request->precio_item)-($descuento);
         $pedido->pedidoItem()->save($pedidoItem);
         $item->pedidoItem()->save($pedidoItem);
+
+        $pedidoItem->save();
 
 
         return response()->json($pedidoItem);

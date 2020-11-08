@@ -18,8 +18,9 @@ class CreatePedidoItemsTable extends Migration
             $table->foreignId('producto_id')->nullable();
             $table->foreignId('accesorio_id')->nullable();
             $table->foreignId('pedido_id');
-            $table->float('precio')->nullable();
-            $table->integer('porcentajeOS')->nullable();
+            $table->float('precio_item')->nullable();
+            $table->integer('porcentaje_os')->nullable();
+            $table->float('precio_final')->nullable();
             $table->timestamps();
             $table->softDeletes();
 

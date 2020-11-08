@@ -34,3 +34,4 @@ Route::apiResource('/formaPago', 'FormaPagoController');
 Route::apiResource('/pago', 'PagoController');
 Route::apiResource('/cobro', 'CobroController');
 Route::apiResource('/pedido', 'PedidoController');
+Route::apiResource('/pedidoItem', 'PedidoItemController');
