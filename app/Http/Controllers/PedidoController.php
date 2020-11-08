@@ -58,6 +58,8 @@ class PedidoController extends Controller
                 $pedidoItem->pedido_id = $pedido->id;
                 $pedidoItem->producto_id = $producto->id;
                 $pedidoItem->precio = $producto->precio;
+
+                $pedidoItem->save();
             }
         }
 
@@ -71,6 +73,8 @@ class PedidoController extends Controller
                 $pedidoItem->pedido_id = $pedido->id;
                 $pedidoItem->accesorio_id = $accesorio->id;
                 $pedidoItem->precio = $accesorio->precio;
+
+                $pedidoItem->save();
             }
         }
         
