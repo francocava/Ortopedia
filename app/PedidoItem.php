@@ -11,6 +11,8 @@ class PedidoItem extends Model
 
     protected $with = ['producto:id,nombre', 'accesorio:id,nombre']; //poniendolo asi solo me trae el nombre
 
+    protected $appends = ['precio_final'];
+
     public function producto()
     {
         return $this->belongsTo('App\Producto');
