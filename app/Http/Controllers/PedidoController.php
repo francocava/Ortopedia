@@ -74,7 +74,7 @@ class PedidoController extends Controller
                 $pedidoItem->save();
             }
         }
-        
+
         return response()->json($pedido);
     }
 

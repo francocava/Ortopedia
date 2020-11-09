@@ -9,7 +9,7 @@ class PedidoItem extends Model
 {
     use SoftDeletes;
 
-    protected $with = ['producto:id,nombre','accesorio:id,nombre']; //poniendolo asi solo me trae el nombre
+    protected $with = ['producto:id,nombre', 'accesorio:id,nombre']; //poniendolo asi solo me trae el nombre
 
     public function producto()
     {
@@ -24,5 +24,10 @@ class PedidoItem extends Model
     public function accesorio()
     {
         return $this->belongsTo('App\Accesorio');
+    }
+
+    public function getPrecioFinalAttribute()
+    {
+        return ($this->precio_item - ($this->precio_item) * ($this->porcentaje_os / 100));
     }
 }
