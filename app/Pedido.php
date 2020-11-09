@@ -9,7 +9,7 @@ class Pedido extends Model
 {
     use SoftDeletes;
 
-    //protected $with = ['sucursal','usuario:id,usuario','cliente'];
+    protected $with = ['cliente:id,apellido'];
 
     public function cliente()
     {
