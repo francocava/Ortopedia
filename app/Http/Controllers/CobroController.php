@@ -16,7 +16,7 @@ class CobroController extends Controller
      */
     public function index()
     {
-        return response()->json(Cobro::all());
+        return response()->json(Cobro::with(['pedido:id,cliente_id'])->get());
     }
 
 
