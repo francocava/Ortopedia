@@ -63,6 +63,8 @@ class FacturaController extends Controller
         $factura->importe = $request->importe;
         $factura->fl_ct = $request->fl_ct;
 
+        $factura->save();
+
         return response()->json($factura);
     }
 
