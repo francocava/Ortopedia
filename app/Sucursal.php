@@ -9,7 +9,7 @@ class Sucursal extends Model
 {
     use SoftDeletes;
 
-    protected $table = 'sucursales';
+    protected $table = 'sucursales'; //Problema
 
     public function pedido()
     {

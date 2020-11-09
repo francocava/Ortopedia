@@ -15,11 +15,11 @@ class CreatePedidosTable extends Migration
     {
         Schema::create('pedidos', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('clie_id');
-            $table->foreignId('suc_id');
+            $table->foreignId('cliente_id');
+            $table->foreignId('sucursal_id');
             $table->foreignId('estado_id')->nullable();
             $table->foreignId('usuario_id');
-            $table->foreignId('fac_id')->nullable();
+            $table->foreignId('factura_id')->nullable();
             $table->date('fecha_ingreso_autorizacion');
             $table->date('fecha_retiro');
             $table->float('importe_fac')->nullable();
@@ -29,12 +29,12 @@ class CreatePedidosTable extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('clie_id')
+            $table->foreign('cliente_id')
                 ->references('id')->on('clientes')
                 ->onUpdate('cascade')
                 ->onDelete('restrict');
 
-            $table->foreign('suc_id')
+            $table->foreign('sucursal_id')
                 ->references('id')->on('sucursales')
                 ->onUpdate('cascade')
                 ->onDelete('restrict');
@@ -49,7 +49,7 @@ class CreatePedidosTable extends Migration
                 ->onUpdate('cascade')
                 ->onDelete('restrict');
 
-            $table->foreign('fac_id')
+            $table->foreign('factura_id')
                 ->references('id')->on('facturas')
                 ->onUpdate('cascade')
                 ->onDelete('restrict');

@@ -9,6 +9,8 @@ class Pedido extends Model
 {
     use SoftDeletes;
 
+    //protected $with = ['sucursal','usuario:id,usuario','cliente'];
+
     public function cliente()
     {
         return $this->belongsTo('App\Cliente');
