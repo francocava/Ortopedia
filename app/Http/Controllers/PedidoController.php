@@ -40,7 +40,6 @@ class PedidoController extends Controller
         $pedido->fac_id = $request->fac_id;
         $pedido->fecha_ingreso_autorizacion = $request->fecha_ingreso_autorizacion;
         $pedido->fecha_retiro = $request->fecha_retiro;
-        $pedido->importe_fac = $request->importe_fac;
         $pedido->fl_ct = $request->fl_ct;
         $pedido->nro_recibo_proveedor = $request->nro_recibo_proveedor;
         $pedido->cancelado = false; //Como es un pedido nuevo por defecto esta en NO, cuando se edita se pasa a Si
@@ -108,7 +107,6 @@ class PedidoController extends Controller
         $pedido->fac_id = $request->fac_id;
         $pedido->fecha_ingreso_autorizacion = $request->fecha_ingreso_autorizacion;
         $pedido->fecha_retiro = $request->fecha_retiro;
-        $pedido->importe_fac = $request->importe_fac;
         $pedido->nro_recibo_proveedor = $request->nro_recibo_proveedor;
         $pedido->cancelado = $request->cancelado;
 

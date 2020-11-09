@@ -22,7 +22,6 @@ class CreatePedidosTable extends Migration
             $table->foreignId('fac_id')->nullable();
             $table->date('fecha_ingreso_autorizacion');
             $table->date('fecha_retiro');
-            $table->float('importe_fac')->nullable();
             $table->string('fl_ct');
             $table->bigInteger('nro_recibo_proveedor')->nullable();
             $table->boolean('cancelado');
