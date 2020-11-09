@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder
@@ -28,16 +29,16 @@ class DatabaseSeeder extends Seeder
             'nombre' => 'Gaston',
             'apellido' => 'Paella',
             'usuario' => 'gPaella',
-            'password' => 'donPepe1212',
+            'password' => Hash::make('123456'),
             'rol_id' => '2'
         ]);
 
         DB::table('usuarios')->insert([
             'id' => '1',
-            'nombre' => 'Clauda',
+            'nombre' => 'Claudia',
             'apellido' => 'Moyano',
             'usuario' => 'cMoyano',
-            'password' => 'contra213',
+            'password' => Hash::make('123456'),
             'rol_id' => '1'
         ]);
 

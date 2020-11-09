@@ -17,10 +17,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::post('/token', 'AuthController@login')->name('login');
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/me', 'AuthController@me')->name('me');
+
+    Route::post('/logout', 'AuthController@logout')->name('logout');
 });
 
+//! LLevar todas las rutas que requieran autenticacion al middleware
 
 Route::apiResource('/cliente', 'ClienteController');
 Route::apiResource('/obraSocial', 'ObraSocialController');
