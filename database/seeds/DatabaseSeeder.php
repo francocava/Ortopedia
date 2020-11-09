@@ -166,11 +166,11 @@ class DatabaseSeeder extends Seeder
 
         DB::table('pedidos')->insert([
             'id' => '1',
-            'clie_id' => '1',
-            'suc_id' => '1',
+            'cliente_id' => '1',
+            'sucursal_id' => '1',
             'estado_id' => '1',
             'usuario_id' => '2',
-            'fac_id' => '1',
+            'factura_id' => '1',
             'fecha_ingreso_autorizacion' => '2020/10/22',
             'fecha_retiro' => '2020/11/22',
             'fl_ct' => 'fl',
