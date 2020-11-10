@@ -20,11 +20,7 @@ class AuthController extends Controller
         $user = Usuario::where('usuario', $request->usuario)->first();
 
         if (!$user || !Hash::check($request->password, $user->password)) {
-            exit;
-            throw ValidationException::withMessages([
-                'usuario' => ['Usuario y/o contraseña incorrectos'],
-            ]);
-
+            return response()->json(['error' => 'Usuario y/o contraseña incorrectos'], 401);
         }
 
         return response()->json(['token' => $user->createToken($request->device_name ?? 'generic')->plainTextToken]);
