@@ -16,7 +16,7 @@ class Producto extends Model
         return $this->belongsTo('App\Proveedor');
     }
 
-    public function pedidoItem()
+    public function pedidoItems()
     {
         return $this->hasMany('App\PedidoItem');
     }

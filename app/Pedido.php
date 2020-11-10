@@ -31,17 +31,17 @@ class Pedido extends Model
         return $this->belongsTo('App\Estado');
     }
 
-    public function cobro()
+    public function cobros()
     {
         return $this->hasMany('App\Cobro');
     }
 
-    public function pago()
+    public function pagos()
     {
         return $this->hasMany('App\Pago');
     }
 
-    public function pedidoItem()
+    public function pedidoItems()
     {
         return $this->hasMany('App\PedidoItem');
     }

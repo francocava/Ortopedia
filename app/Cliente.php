@@ -18,7 +18,7 @@ class Cliente extends Model
      */
     protected $with = ['obraSocial'];
 
-    public function pedido()
+    public function pedidos()
     {
         return $this->hasMany('App\Pedido');
     }

@@ -16,7 +16,7 @@ class Accesorio extends Model
      */
     protected $with = ['proveedor'];
 
-    public function pedidoItem()
+    public function pedidoItems()
     {
         return $this->hasMany('App\PedidoItem');
     }

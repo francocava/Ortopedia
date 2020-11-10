@@ -9,7 +9,7 @@ class PedidoItemAccesorio extends Model
 {
     use SoftDeletes;
 
-    public function pedidoItem()
+    public function pedidoItems()
     {
         return $this->belongsTo('App\PedidoItem');
     }

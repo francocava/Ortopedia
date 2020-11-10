@@ -11,12 +11,12 @@ class FormaPago extends Model
 
     protected $table = 'formas_pagos';
 
-    public function cobro()
+    public function cobros()
     {
         return $this->hasMany('App\Cobro');
     }
 
-    public function pago()
+    public function pagos()
     {
         return $this->hasMany('App\Pago');
     }

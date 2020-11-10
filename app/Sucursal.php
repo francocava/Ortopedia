@@ -11,7 +11,7 @@ class Sucursal extends Model
 
     protected $table = 'sucursales'; //Problema
 
-    public function pedido()
+    public function pedidos()
     {
         return $this->hasMany('App\Pedido');
     }

@@ -11,17 +11,17 @@ class Proveedor extends Model
 
     protected $table = 'proveedores';
 
-    public function producto()
+    public function productos()
     {
         return $this->hasMany('App\Producto');
     }
 
-    public function accesorio()
+    public function accesorios()
     {
         return $this->hasMany('App\Accesorio');
     }
 
-    public function pago()
+    public function pagos()
     {
         return $this->hasMany('App\Pago');
     }

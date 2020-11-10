@@ -23,7 +23,7 @@ class Usuario extends Authenticatable
         return $this->belongsTo('App\Rol');
     }
 
-    public function pedido()
+    public function pedidos()
     {
         return $this->hasMany('App\Pedido');
     }
