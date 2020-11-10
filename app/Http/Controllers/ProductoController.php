@@ -83,6 +83,7 @@ class ProductoController extends Controller
         */ //Aca hay algo mal
 
         $proveedor->producto()->save($producto);
+        $producto->save();
 
         return response()->json($producto);
     }

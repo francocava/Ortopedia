@@ -67,6 +67,8 @@ class UsuarioController extends Controller
 
         $rol->usuario()->save($usuario);
 
+        $usuario->save();
+
         return response()->json($usuario);
     }
 

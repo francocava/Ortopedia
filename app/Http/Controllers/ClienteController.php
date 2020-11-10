@@ -77,6 +77,8 @@ class ClienteController extends Controller
 
         $obraSocial->clientes()->save($cliente);
 
+        $cliente->save();
+
         return response()->json($cliente);
     }
 

@@ -70,6 +70,8 @@ class CobroController extends Controller
         $pedido->cobro()->save($cobro);
         $formaPago->cobro()->save($cobro);
 
+        $cobro->save();
+
         return response()->json($cobro);
     }
 
