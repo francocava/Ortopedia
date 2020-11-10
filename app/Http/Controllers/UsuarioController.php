@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Usuario;
 use App\Rol;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UsuarioController extends Controller
 {
@@ -36,7 +37,7 @@ class UsuarioController extends Controller
         $usuario->nombre = $request->nombre;
         $usuario->apellido = $request->apellido;
         $usuario->usuario = $usuarioNuevo;
-        $usuario->password = "123456"; //password por defecto, despues se cambia
+        $usuario->password = Hash::make('123456'); //password por defecto, despues se cambia
 
         $usuario->rol()->associate($rol);
         $usuario->save();
