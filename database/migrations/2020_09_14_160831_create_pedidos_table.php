@@ -18,10 +18,9 @@ class CreatePedidosTable extends Migration
             $table->foreignId('cliente_id');
             $table->foreignId('sucursal_id');
             $table->foreignId('usuario_id');
-            $table->foreignId('factura_id')->nullable();
             $table->date('fecha_ingreso_autorizacion');
             $table->date('fecha_retiro');
-            $table->string('fl_ct');
+            $table->float('importe');
             $table->bigInteger('nro_recibo_proveedor')->nullable();
             $table->boolean('cancelado');
             $table->timestamps();
@@ -40,11 +39,6 @@ class CreatePedidosTable extends Migration
 
             $table->foreign('usuario_id')
                 ->references('id')->on('usuarios')
-                ->onUpdate('cascade')
-                ->onDelete('restrict');
-
-            $table->foreign('factura_id')
-                ->references('id')->on('facturas')
                 ->onUpdate('cascade')
                 ->onDelete('restrict');
 

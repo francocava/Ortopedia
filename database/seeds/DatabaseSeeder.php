@@ -158,8 +158,7 @@ class DatabaseSeeder extends Seeder
 
         DB::table('facturas')->insert([
             'id' => '1',
-            'total_sin_iva' => '32',
-            'total_con_iva' => '234',
+            'pedido_id' => '1',
             'fecha_fac' => '2020/10/23',
             'importe' => '232',
             'fl_ct' => 'fl'
@@ -171,10 +170,9 @@ class DatabaseSeeder extends Seeder
             'sucursal_id' => '1',
             'estado_id' => '1',
             'usuario_id' => '2',
-            'factura_id' => '1',
             'fecha_ingreso_autorizacion' => '2020/10/22',
             'fecha_retiro' => '2020/11/22',
-            'fl_ct' => 'fl',
+            'importe' => '9090',
             'nro_recibo_proveedor' => '32434',
             'cancelado' => false
         ]);

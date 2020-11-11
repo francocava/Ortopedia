@@ -48,6 +48,6 @@ class Pedido extends Model
 
     public function factura()
     {
-        return $this->hasOne('App\Factura');
+        return $this->hasMany('App\Factura');
     }
 }
