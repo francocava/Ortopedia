@@ -20,7 +20,7 @@ class CreatePedidosTable extends Migration
             $table->foreignId('usuario_id');
             $table->date('fecha_ingreso_autorizacion');
             $table->date('fecha_retiro');
-            $table->float('importe');
+            $table->float('importe')->nullable();
             $table->bigInteger('nro_recibo_proveedor')->nullable();
             $table->boolean('cancelado');
             $table->timestamps();

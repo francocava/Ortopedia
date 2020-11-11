@@ -33,8 +33,8 @@ class PedidoController extends Controller
         $productos = $request->productos;
         $accesorios = $request->accesorios;
 
-        $pedido->clie_id = $request->clie_id;
-        $pedido->suc_id = $request->suc_id;
+        $pedido->cliente_id = $request->cliente_id;
+        $pedido->sucursal_id = $request->sucursal_id;
         $pedido->usuario_id = $request->usuario_id;
         $pedido->importe = $request->importe;
         $pedido->fecha_ingreso_autorizacion = $request->fecha_ingreso_autorizacion;
@@ -52,7 +52,7 @@ class PedidoController extends Controller
 
                 $pedidoItem->pedido_id = $pedido->id;
                 $pedidoItem->producto_id = $producto->id;
-                $pedidoItem->precio = $producto->precio;
+                $pedidoItem->precio_item = $producto->precio;
 
                 $pedidoItem->save();
             }
@@ -67,7 +67,7 @@ class PedidoController extends Controller
 
                 $pedidoItem->pedido_id = $pedido->id;
                 $pedidoItem->accesorio_id = $accesorio->id;
-                $pedidoItem->precio = $accesorio->precio;
+                $pedidoItem->precio_item = $accesorio->precio;
 
                 $pedidoItem->save();
             }
@@ -97,8 +97,8 @@ class PedidoController extends Controller
     public function update(Request $request, Pedido $pedido)
     {
         //Para modificar un pedido_item hay que ir a su correspondiente controller
-        $pedido->clie_id = $request->clie_id;
-        $pedido->suc_id = $request->suc_id;
+        $pedido->cliente_id = $request->cliente_id;
+        $pedido->sucursal_id = $request->sucursal_id;
         $pedido->importe = $request->importe;
         $pedido->usuario_id = $request->usuario_id;
         $pedido->fecha_ingreso_autorizacion = $request->fecha_ingreso_autorizacion;
@@ -120,6 +120,14 @@ class PedidoController extends Controller
     public function destroy($id)
     {
         $pedido = Pedido::findOrFail($id);
+
+        $items = PedidoItem::where('pedido_id',$id); //No funcaaaaaaaaaa
+
+        foreach($items as $item){
+            //logger($item);
+            $item->delete();
+        }
+
         $pedido->delete();
 
         return response()->json($pedido);
