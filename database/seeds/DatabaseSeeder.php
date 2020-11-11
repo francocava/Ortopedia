@@ -151,9 +151,17 @@ class DatabaseSeeder extends Seeder
             'nroAfiliado' => '23435647'
         ]);
 
-        DB::table('estados')->insert([
+
+        DB::table('pedidos')->insert([
             'id' => '1',
-            'nombre' => 'No'
+            'cliente_id' => '1',
+            'sucursal_id' => '1',
+            'usuario_id' => '2',
+            'fecha_ingreso_autorizacion' => '2020/10/22',
+            'fecha_retiro' => '2020/11/22',
+            'importe' => '9090',
+            'nro_recibo_proveedor' => '32434',
+            'cancelado' => false
         ]);
 
         DB::table('facturas')->insert([
@@ -162,19 +170,6 @@ class DatabaseSeeder extends Seeder
             'fecha_fac' => '2020/10/23',
             'importe' => '232',
             'fl_ct' => 'fl'
-        ]);
-
-        DB::table('pedidos')->insert([
-            'id' => '1',
-            'cliente_id' => '1',
-            'sucursal_id' => '1',
-            'estado_id' => '1',
-            'usuario_id' => '2',
-            'fecha_ingreso_autorizacion' => '2020/10/22',
-            'fecha_retiro' => '2020/11/22',
-            'importe' => '9090',
-            'nro_recibo_proveedor' => '32434',
-            'cancelado' => false
         ]);
 
         DB::table('pedido_items')->insert([
