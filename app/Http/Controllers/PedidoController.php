@@ -35,12 +35,10 @@ class PedidoController extends Controller
 
         $pedido->clie_id = $request->clie_id;
         $pedido->suc_id = $request->suc_id;
-        $pedido->estado_id = $request->estado_id; //Creo que estado esta de sobra 
         $pedido->usuario_id = $request->usuario_id;
-        $pedido->fac_id = $request->fac_id;
+        $pedido->importe = $request->importe;
         $pedido->fecha_ingreso_autorizacion = $request->fecha_ingreso_autorizacion;
         $pedido->fecha_retiro = $request->fecha_retiro;
-        $pedido->fl_ct = $request->fl_ct;
         $pedido->nro_recibo_proveedor = $request->nro_recibo_proveedor;
         $pedido->cancelado = false; //Como es un pedido nuevo por defecto esta en NO, cuando se edita se pasa a Si
 
@@ -99,12 +97,10 @@ class PedidoController extends Controller
     public function update(Request $request, Pedido $pedido)
     {
         //Para modificar un pedido_item hay que ir a su correspondiente controller
-        $pedido->fl_ct = $request->fl_ct;
         $pedido->clie_id = $request->clie_id;
         $pedido->suc_id = $request->suc_id;
-        $pedido->estado_id = $request->estado_id;
+        $pedido->importe = $request->importe;
         $pedido->usuario_id = $request->usuario_id;
-        $pedido->fac_id = $request->fac_id;
         $pedido->fecha_ingreso_autorizacion = $request->fecha_ingreso_autorizacion;
         $pedido->fecha_retiro = $request->fecha_retiro;
         $pedido->nro_recibo_proveedor = $request->nro_recibo_proveedor;

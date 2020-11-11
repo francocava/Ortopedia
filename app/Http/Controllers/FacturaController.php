@@ -27,11 +27,12 @@ class FacturaController extends Controller
     {
         $factura = new Factura();
 
-        $factura->total_sin_iva = $request->total_sin_iva;
-        $factura->total_con_iva = $request->total_con_iva;
-        $factura->fecha_fac = $request->fecha_fac;
+        $factura->pedido_id = $request->id;
+        $factura->fecha_fac = $request->fecha_ingreso_autorizacion;
         $factura->importe = $request->importe;
         $factura->fl_ct = $request->fl_ct;
+
+        $factura->save();
 
         return response()->json($factura);
     }
@@ -57,10 +58,9 @@ class FacturaController extends Controller
      */
     public function update(Request $request, Factura $factura)
     {
-        $factura->total_sin_iva = $request->total_sin_iva;
-        $factura->total_con_iva = $request->total_con_iva;
-        $factura->fecha_fac = $request->fecha_fac;
+        $factura->fecha_fac = $request->fecha_ingreso_autorizacion;
         $factura->importe = $request->importe;
+        $factura->pedido_id = $request->id;
         $factura->fl_ct = $request->fl_ct;
 
         $factura->save();
