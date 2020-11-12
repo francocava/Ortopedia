@@ -41,7 +41,6 @@ class PedidoController extends Controller
         $pedido->fecha_ingreso_autorizacion = $request->fecha_ingreso_autorizacion;
         $pedido->fecha_retiro = $request->fecha_retiro;
         $pedido->nro_recibo_proveedor = $request->nro_recibo_proveedor;
-        $pedido->cancelado = false; //Como es un pedido nuevo por defecto esta en NO, cuando se edita se pasa a Si
 
         $pedido->save();
 
@@ -111,7 +110,6 @@ class PedidoController extends Controller
         $pedido->fecha_ingreso_autorizacion = $request->fecha_ingreso_autorizacion;
         $pedido->fecha_retiro = $request->fecha_retiro;
         $pedido->nro_recibo_proveedor = $request->nro_recibo_proveedor;
-        $pedido->cancelado = $request->cancelado;
 
         $pedido->save();
 
@@ -128,16 +126,11 @@ class PedidoController extends Controller
     {
         $pedido = Pedido::findOrFail($id);
 
-        /*
-        //$items = PedidoItem::where('pedido_id',$id); //No funcaaaaaaaaaa
-        $items = DB::table('pedido_items')->where('pedido_id',$id);
-
-        foreach($items as $item){   
-            //logger($item);
-            $item2 = PedidoItem::findOrFail($item->id);
-            $item2->delete();
+        foreach ($pedido->pedidoItems as $item) {
+            $item->delete();
+            $item->delete();
+            $item->delete();
         }
-        */
 
         $pedido->delete();
 

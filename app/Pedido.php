@@ -11,6 +11,8 @@ class Pedido extends Model
 
     protected $with = ['cliente:id,apellido'];
 
+    protected $appends = ['cancelado'];
+
     public function cliente()
     {
         return $this->belongsTo('App\Cliente');
@@ -49,5 +51,10 @@ class Pedido extends Model
     public function factura()
     {
         return $this->hasMany('App\Factura');
+    }
+
+    public function getCanceladoAttribute($value)
+    {
+        return false;
     }
 }

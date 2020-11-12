@@ -22,7 +22,6 @@ class CreatePedidosTable extends Migration
             $table->date('fecha_retiro');
             $table->float('importe')->nullable();
             $table->bigInteger('nro_recibo_proveedor')->nullable();
-            $table->boolean('cancelado');
             $table->timestamps();
             $table->softDeletes();
 
