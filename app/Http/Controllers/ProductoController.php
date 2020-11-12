@@ -42,9 +42,6 @@ class ProductoController extends Controller
             $producto->accesorio()->attach($accesorio_id);
         }
 
-        $producto->proveedor()->associate($proveedor);
-        $producto->save();
-
         return response()->json($producto);
     }
 

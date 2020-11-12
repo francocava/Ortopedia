@@ -8,6 +8,7 @@ use App\PedidoItem;
 use App\PedidoItemAccesorio;
 use App\Producto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PedidoController extends Controller
 {
@@ -54,6 +55,8 @@ class PedidoController extends Controller
                 $pedidoItem->producto_id = $producto->id;
                 $pedidoItem->precio_item = $producto->precio;
 
+                $pedidoItem->pedido()->associate($pedido);
+
                 $pedidoItem->save();
             }
         }
@@ -68,6 +71,8 @@ class PedidoController extends Controller
                 $pedidoItem->pedido_id = $pedido->id;
                 $pedidoItem->accesorio_id = $accesorio->id;
                 $pedidoItem->precio_item = $accesorio->precio;
+
+                $pedidoItem->pedido()->associate($pedido);
 
                 $pedidoItem->save();
             }
@@ -121,12 +126,16 @@ class PedidoController extends Controller
     {
         $pedido = Pedido::findOrFail($id);
 
-        $items = PedidoItem::where('pedido_id',$id); //No funcaaaaaaaaaa
+        /*
+        //$items = PedidoItem::where('pedido_id',$id); //No funcaaaaaaaaaa
+        $items = DB::table('pedido_items')->where('pedido_id',$id);
 
-        foreach($items as $item){
+        foreach($items as $item){   
             //logger($item);
-            $item->delete();
+            $item2 = PedidoItem::findOrFail($item->id);
+            $item2->delete();
         }
+        */
 
         $pedido->delete();
 

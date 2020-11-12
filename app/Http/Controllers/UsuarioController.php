@@ -61,10 +61,14 @@ class UsuarioController extends Controller
     {
         $rol = Rol::findOrFail($request->rol_id);
 
+        $usuarioNuevo = substr($request->nombre, 0, -strlen($request->nombre) + 1);
+        $usuarioNuevo = strtolower($usuarioNuevo) . ($request->apellido);
+        //Me genera el nombre de usuario por ej: Nico Perez => nPerez
+
         $usuario->nombre = $request->nombre;
         $usuario->apellido = $request->apellido;
-        $usuario->usuario = $request->usuario;
-        $usuario->password = $request->password;
+        $usuario->usuario = $usuarioNuevo;
+        //$usuario->password = $request->password;
 
         $rol->usuario()->save($usuario);
 
