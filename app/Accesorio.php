@@ -26,7 +26,7 @@ class Accesorio extends Model
         return $this->belongsTo('App\Proveedor');
     }
 
-    public function producto()
+    public function productos()
     {
         return $this->belongsToMany('App\Producto');
     }
