@@ -16,7 +16,7 @@ class CreateAccesoriosTable extends Migration
         Schema::create('accesorios', function (Blueprint $table) {
             $table->id();
             $table->foreignId('proveedor_id');
-            $table->integer('nroArticulo')->nullable();
+            $table->integer('nro_articulo')->nullable();
             $table->string('nombre');
             $table->float('precio')->nullable();
             $table->timestamps();

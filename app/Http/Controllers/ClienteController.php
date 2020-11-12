@@ -37,7 +37,7 @@ class ClienteController extends Controller
         $cliente->dni = $request->dni;
         $cliente->contacto = $request->contacto;
         $cliente->telefono = $request->telefono;
-        $cliente->nroAfiliado = $request->nroAfiliado;
+        $cliente->nro_afiliado = $request->nro_afiliado;
 
         $obraSocial->clientes()->save($cliente);
 
@@ -73,7 +73,7 @@ class ClienteController extends Controller
         $cliente->dni = $request->dni;
         $cliente->contacto = $request->contacto;
         $cliente->telefono = $request->telefono;
-        $cliente->nroAfiliado = $request->nroAfiliado;
+        $cliente->nro_afiliado = $request->nro_afiliado;
 
         $obraSocial->clientes()->save($cliente);
 

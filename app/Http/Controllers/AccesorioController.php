@@ -30,7 +30,7 @@ class AccesorioController extends Controller
         $proveedor = Proveedor::findOrFail($request->proveedor_id);
         $productos = $request->productos;
 
-        $accesorio->nroArticulo = $request->nroArticulo;
+        $accesorio->nro_articulo = $request->nro_articulo;
         $accesorio->nombre = $request->nombre;
         $accesorio->precio = $request->precio;
 
@@ -68,7 +68,7 @@ class AccesorioController extends Controller
         $proveedor = Proveedor::findOrFail($request->proveedor_id);
         //$productos = $request->productos;
 
-        $accesorio->nroArticulo = $request->nroArticulo;
+        $accesorio->nro_articulo = $request->nro_articulo;
         $accesorio->nombre = $request->nombre;
         $accesorio->precio = $request->precio;
 

@@ -31,7 +31,7 @@ class ProductoController extends Controller
         $proveedor = Proveedor::findOrFail($request->proveedor_id);
 
         $accesorios = $request->accesorios;
-        $producto->nroArticulo = $request->nroArticulo;
+        $producto->nro_articulo = $request->nro_articulo;
         $producto->nombre = $request->nombre;
         $producto->precio = $request->precio;
 
@@ -68,7 +68,7 @@ class ProductoController extends Controller
         $proveedor = Proveedor::findOrFail($request->proveedor_id);
 
         //$accesorios = $request->accesorios;
-        $producto->nroArticulo = $request->nroArticulo;
+        $producto->nro_articulo = $request->nro_articulo;
         $producto->nombre = $request->nombre;
         $producto->precio = $request->precio;
         //$producto->accesorio()->detach(); //deberia sacarle todos sus accesorios

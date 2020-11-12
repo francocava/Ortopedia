@@ -94,7 +94,7 @@ class DatabaseSeeder extends Seeder
             'proveedor_id' => '1',
             'nombre' => 'Silla de ruedas',
             'precio' => '43000',
-            'nroArticulo' => '13',
+            'nro_articulo' => '13',
         ]);
 
         DB::table('productos')->insert([
@@ -110,7 +110,7 @@ class DatabaseSeeder extends Seeder
             'proveedor_id' => '1',
             'nombre' => 'Cabezal para silla',
             'precio' => '1500',
-            'nroArticulo' => '21',
+            'nro_articulo' => '21',
         ]);
 
         DB::table('accesorios')->insert([
@@ -118,7 +118,7 @@ class DatabaseSeeder extends Seeder
             'proveedor_id' => '2',
             'nombre' => 'Bateria para silla',
             'precio' => '4545',
-            'nroArticulo' => '99',
+            'nro_articulo' => '99',
         ]);
 
         DB::table('accesorio_producto')->insert([
@@ -138,7 +138,7 @@ class DatabaseSeeder extends Seeder
             'dni' => '39458753',
             'telefono' => '45458989',
             'obra_id' => '1',
-            'nroAfiliado' => '23435'
+            'nro_afiliado' => '23435'
         ]);
 
         DB::table('clientes')->insert([
@@ -148,7 +148,7 @@ class DatabaseSeeder extends Seeder
             'dni' => '30458753',
             'telefono' => '45458900',
             'obra_id' => '2',
-            'nroAfiliado' => '23435647'
+            'nro_afiliado' => '23435647'
         ]);
 
 

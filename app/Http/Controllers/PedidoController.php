@@ -53,6 +53,7 @@ class PedidoController extends Controller
 
                 $pedidoItem->pedido_id = $pedido->id;
                 $pedidoItem->producto_id = $producto->id;
+                $pedidoItem->nro_articulo = $producto->nro_articulo;
                 $pedidoItem->precio_item = $producto->precio;
 
                 $pedidoItem->pedido()->associate($pedido);
@@ -70,6 +71,7 @@ class PedidoController extends Controller
 
                 $pedidoItem->pedido_id = $pedido->id;
                 $pedidoItem->accesorio_id = $accesorio->id;
+                $pedidoItem->nro_articulo = $producto->nro_articulo;
                 $pedidoItem->precio_item = $accesorio->precio;
 
                 $pedidoItem->pedido()->associate($pedido);
