@@ -94,7 +94,7 @@ class DatabaseSeeder extends Seeder
             'proveedor_id' => '1',
             'nombre' => 'Silla de ruedas',
             'precio' => '43000',
-            'nroArticulo' => '13',
+            'nro_articulo' => '13',
         ]);
 
         DB::table('productos')->insert([
@@ -110,7 +110,7 @@ class DatabaseSeeder extends Seeder
             'proveedor_id' => '1',
             'nombre' => 'Cabezal para silla',
             'precio' => '1500',
-            'nroArticulo' => '21',
+            'nro_articulo' => '21',
         ]);
 
         DB::table('accesorios')->insert([
@@ -118,7 +118,7 @@ class DatabaseSeeder extends Seeder
             'proveedor_id' => '2',
             'nombre' => 'Bateria para silla',
             'precio' => '4545',
-            'nroArticulo' => '99',
+            'nro_articulo' => '99',
         ]);
 
         DB::table('accesorio_producto')->insert([
@@ -138,7 +138,7 @@ class DatabaseSeeder extends Seeder
             'dni' => '39458753',
             'telefono' => '45458989',
             'obra_id' => '1',
-            'nroAfiliado' => '23435'
+            'nro_afiliado' => '23435'
         ]);
 
         DB::table('clientes')->insert([
@@ -148,35 +148,28 @@ class DatabaseSeeder extends Seeder
             'dni' => '30458753',
             'telefono' => '45458900',
             'obra_id' => '2',
-            'nroAfiliado' => '23435647'
+            'nro_afiliado' => '23435647'
         ]);
 
-        DB::table('estados')->insert([
-            'id' => '1',
-            'nombre' => 'No'
-        ]);
-
-        DB::table('facturas')->insert([
-            'id' => '1',
-            'total_sin_iva' => '32',
-            'total_con_iva' => '234',
-            'fecha_fac' => '2020/10/23',
-            'importe' => '232',
-            'fl_ct' => 'fl'
-        ]);
 
         DB::table('pedidos')->insert([
             'id' => '1',
             'cliente_id' => '1',
             'sucursal_id' => '1',
-            'estado_id' => '1',
             'usuario_id' => '2',
-            'factura_id' => '1',
             'fecha_ingreso_autorizacion' => '2020/10/22',
             'fecha_retiro' => '2020/11/22',
-            'fl_ct' => 'fl',
+            'importe' => '9090',
             'nro_recibo_proveedor' => '32434',
             'cancelado' => false
+        ]);
+
+        DB::table('facturas')->insert([
+            'id' => '1',
+            'pedido_id' => '1',
+            'fecha_fac' => '2020/10/23',
+            'importe' => '232',
+            'fl_ct' => 'fl'
         ]);
 
         DB::table('pedido_items')->insert([

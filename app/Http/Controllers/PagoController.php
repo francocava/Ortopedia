@@ -72,6 +72,8 @@ class PagoController extends Controller
         $formaPago->pago()->save($pago);
         $proveedor->pago()->save($pago);
 
+        $pago->save();
+
         return response()->json($pago);
     }
 

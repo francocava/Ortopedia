@@ -21,7 +21,7 @@ class CreateClientesTable extends Migration
             $table->integer('dni');
             $table->string('contacto')->nullable();
             $table->string('telefono');
-            $table->string('nroAfiliado')->nullable();
+            $table->string('nro_afiliado')->nullable();
             $table->timestamps();
             $table->softDeletes();
 

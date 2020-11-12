@@ -8,6 +8,7 @@ use App\PedidoItem;
 use App\PedidoItemAccesorio;
 use App\Producto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PedidoController extends Controller
 {
@@ -33,14 +34,12 @@ class PedidoController extends Controller
         $productos = $request->productos;
         $accesorios = $request->accesorios;
 
-        $pedido->clie_id = $request->clie_id;
-        $pedido->suc_id = $request->suc_id;
-        $pedido->estado_id = $request->estado_id; //Creo que estado esta de sobra 
+        $pedido->cliente_id = $request->cliente_id;
+        $pedido->sucursal_id = $request->sucursal_id;
         $pedido->usuario_id = $request->usuario_id;
-        $pedido->fac_id = $request->fac_id;
+        $pedido->importe = $request->importe;
         $pedido->fecha_ingreso_autorizacion = $request->fecha_ingreso_autorizacion;
         $pedido->fecha_retiro = $request->fecha_retiro;
-        $pedido->fl_ct = $request->fl_ct;
         $pedido->nro_recibo_proveedor = $request->nro_recibo_proveedor;
         $pedido->cancelado = false; //Como es un pedido nuevo por defecto esta en NO, cuando se edita se pasa a Si
 
@@ -54,7 +53,10 @@ class PedidoController extends Controller
 
                 $pedidoItem->pedido_id = $pedido->id;
                 $pedidoItem->producto_id = $producto->id;
-                $pedidoItem->precio = $producto->precio;
+                $pedidoItem->nro_articulo = $producto->nro_articulo;
+                $pedidoItem->precio_item = $producto->precio;
+
+                $pedidoItem->pedido()->associate($pedido);
 
                 $pedidoItem->save();
             }
@@ -69,7 +71,10 @@ class PedidoController extends Controller
 
                 $pedidoItem->pedido_id = $pedido->id;
                 $pedidoItem->accesorio_id = $accesorio->id;
-                $pedidoItem->precio = $accesorio->precio;
+                $pedidoItem->nro_articulo = $producto->nro_articulo;
+                $pedidoItem->precio_item = $accesorio->precio;
+
+                $pedidoItem->pedido()->associate($pedido);
 
                 $pedidoItem->save();
             }
@@ -99,12 +104,10 @@ class PedidoController extends Controller
     public function update(Request $request, Pedido $pedido)
     {
         //Para modificar un pedido_item hay que ir a su correspondiente controller
-        $pedido->fl_ct = $request->fl_ct;
-        $pedido->clie_id = $request->clie_id;
-        $pedido->suc_id = $request->suc_id;
-        $pedido->estado_id = $request->estado_id;
+        $pedido->cliente_id = $request->cliente_id;
+        $pedido->sucursal_id = $request->sucursal_id;
+        $pedido->importe = $request->importe;
         $pedido->usuario_id = $request->usuario_id;
-        $pedido->fac_id = $request->fac_id;
         $pedido->fecha_ingreso_autorizacion = $request->fecha_ingreso_autorizacion;
         $pedido->fecha_retiro = $request->fecha_retiro;
         $pedido->nro_recibo_proveedor = $request->nro_recibo_proveedor;
@@ -124,6 +127,18 @@ class PedidoController extends Controller
     public function destroy($id)
     {
         $pedido = Pedido::findOrFail($id);
+
+        /*
+        //$items = PedidoItem::where('pedido_id',$id); //No funcaaaaaaaaaa
+        $items = DB::table('pedido_items')->where('pedido_id',$id);
+
+        foreach($items as $item){   
+            //logger($item);
+            $item2 = PedidoItem::findOrFail($item->id);
+            $item2->delete();
+        }
+        */
+
         $pedido->delete();
 
         return response()->json($pedido);

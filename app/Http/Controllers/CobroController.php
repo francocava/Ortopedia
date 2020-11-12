@@ -28,6 +28,7 @@ class CobroController extends Controller
      */
     public function store(Request $request)
     {
+        logger($request);
         $cobro = new Cobro();
         $pedido = Pedido::findOrFail($request->pedido_id);
         $formaPago = FormaPago::findOrFail($request->forma_pago_id);
