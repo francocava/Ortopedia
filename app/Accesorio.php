@@ -14,7 +14,6 @@ class Accesorio extends Model
      *
      * @var array
      */
-    protected $with = ['proveedor'];
 
     public function pedidoItems()
     {
@@ -28,6 +27,6 @@ class Accesorio extends Model
 
     public function productos()
     {
-        return $this->belongsToMany('App\Producto');
+        return $this->belongsToMany('App\Producto', 'accesorio_producto');
     }
 }

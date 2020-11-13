@@ -23,6 +23,6 @@ class Producto extends Model
 
     public function accesorios()
     {
-        return $this->belongsToMany('App\Accesorio');
+        return $this->belongsToMany('App\Accesorio', 'accesorio_producto');
     }
 }

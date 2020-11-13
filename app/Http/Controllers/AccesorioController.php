@@ -15,7 +15,7 @@ class AccesorioController extends Controller
      */
     public function index()
     {
-        return response()->json(Accesorio::all());
+        return response()->json(Accesorio::with(['proveedor'])->get());
     }
 
     /**
@@ -38,7 +38,7 @@ class AccesorioController extends Controller
         $accesorio->save();
 
         if ($productos && sizeof($productos)) foreach ($productos as $producto_id) {
-            $accesorio->producto()->attach($producto_id);
+            $accesorio->productos()->attach($producto_id);
         }
 
         return response()->json($accesorio);

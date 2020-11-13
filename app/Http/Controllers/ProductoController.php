@@ -39,7 +39,7 @@ class ProductoController extends Controller
         $producto->save();
 
         foreach ($accesorios as $accesorio_id) {
-            $producto->accesorio()->attach($accesorio_id);
+            $producto->accesorios()->attach($accesorio_id);
         }
 
         return response()->json($producto);
@@ -51,9 +51,11 @@ class ProductoController extends Controller
      * @param  \App\Producto  $producto
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Producto $producto)
     {
-        return response()->json(Producto::findOrFail($id));
+        $accesorios= $producto->accesorios()->get();
+        
+        return response()->json($accesorios);
     }
 
     /**
