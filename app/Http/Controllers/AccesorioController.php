@@ -37,11 +37,18 @@ class AccesorioController extends Controller
         $accesorio->proveedor()->associate($proveedor);
         $accesorio->save();
 
+        /*
         if ($productos && sizeof($productos)) foreach ($productos as $producto_id) {
+            $accesorio->productos()->attach($producto_id);
+        }
+        */
+
+        foreach ($productos as $producto_id) {
             $accesorio->productos()->attach($producto_id);
         }
 
         return response()->json($accesorio);
+        
     }
 
     /**
@@ -50,9 +57,11 @@ class AccesorioController extends Controller
      * @param  \App\Accesorio  $accesorio
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Accesorio $accesorio)
     {
-        return response()->json(Accesorio::findOrFail($id));
+        $productos= $accesorio->productos()->get();
+        
+        return response()->json($productos);
     }
 
     /**
@@ -64,25 +73,25 @@ class AccesorioController extends Controller
      */
     public function update(Request $request, Accesorio $accesorio)
     {
+        logger($request);
         // $user->roles()->detach(); //puede ser rol si le pones uno especifico (esto lo saque de la docu)
         $proveedor = Proveedor::findOrFail($request->proveedor_id);
-        //$productos = $request->productos;
+        $productos = explode(",", $request->productos);
 
         $accesorio->nro_articulo = $request->nro_articulo;
         $accesorio->nombre = $request->nombre;
         $accesorio->precio = $request->precio;
+        $proveedor->accesorios()->save($accesorio);
 
-        //$accesorio->producto()->detach(); //deberia sacarle todos sus productos
-
-        /*
+        $accesorio->productos()->detach(); //Le saca los productos
+        $accesorio->save();
+        
         foreach ($productos as $producto_id) {
-            $accesorio->producto()->attach($producto_id);
+            $accesorio->productos()->attach($producto_id);
         }
-        */ //Aca hay algo maaal por ahora solo se puede hacer update sin cambiar productos
-
-        $proveedor->accesorio()->save($accesorio);
 
         return response()->json($accesorio);
+
     }
 
     /**
@@ -94,6 +103,7 @@ class AccesorioController extends Controller
     public function destroy($id)
     {
         $accesorio = Accesorio::findOrFail($id);
+        $accesorio->productos()->detach(); //Le saca los productos
         $accesorio->delete();
 
         return response()->json($accesorio);

@@ -68,21 +68,19 @@ class ProductoController extends Controller
     public function update(Request $request, Producto $producto)
     {
         $proveedor = Proveedor::findOrFail($request->proveedor_id);
-
-        //$accesorios = $request->accesorios;
+        $accesorios = explode(",", $request->accesorios);
         $producto->nro_articulo = $request->nro_articulo;
         $producto->nombre = $request->nombre;
         $producto->precio = $request->precio;
-        //$producto->accesorio()->detach(); //deberia sacarle todos sus accesorios
-
-        /*
-        foreach($accesorios as $accesorio_id) {
-            $producto->accesorio()->attach($accesorio_id); //le pone los nuevos
-        }
-        */ //Aca hay algo mal
-
-        $proveedor->producto()->save($producto);
+        $proveedor->productos()->save($producto);
+        
+        $producto->accesorios()->detach(); //Le saca todos sus accesorios
         $producto->save();
+
+        foreach($accesorios as $accesorio_id) {
+            $producto->accesorios()->attach($accesorio_id); //le pone los nuevos
+        }
+        //Funciona 10 puntitos
 
         return response()->json($producto);
     }
@@ -96,6 +94,7 @@ class ProductoController extends Controller
     public function destroy($id)
     {
         $producto = Producto::findOrFail($id);
+        $producto->accesorios()->detach(); //Le saca todos sus accesorios
         $producto->delete();
 
         return response()->json($producto);
