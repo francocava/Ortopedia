@@ -53,9 +53,9 @@ class ProductoController extends Controller
      */
     public function show(Producto $producto)
     {
-        $accesorios= $producto->accesorios()->get();
-        
-        return response()->json($accesorios);
+        $producto->accesorios = $producto->accesorios()->get();
+
+        return response()->json($producto);
     }
 
     /**
@@ -68,7 +68,7 @@ class ProductoController extends Controller
     public function update(Request $request, Producto $producto)
     {
         $proveedor = Proveedor::findOrFail($request->proveedor_id);
-        $accesorios = explode(",", $request->accesorios);
+        $accesorios = $request->accesorios;
         $producto->nro_articulo = $request->nro_articulo;
         $producto->nombre = $request->nombre;
         $producto->precio = $request->precio;
@@ -77,10 +77,9 @@ class ProductoController extends Controller
         $producto->accesorios()->detach(); //Le saca todos sus accesorios
         $producto->save();
 
-        foreach($accesorios as $accesorio_id) {
-            $producto->accesorios()->attach($accesorio_id); //le pone los nuevos
+        foreach($accesorios as $accesorio) {
+            $producto->accesorios()->attach($accesorio['id']); //le pone los nuevos
         }
-        //Funciona 10 puntitos
 
         return response()->json($producto);
     }

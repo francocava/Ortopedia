@@ -76,8 +76,8 @@ class AccesorioController extends Controller
         logger($request);
         // $user->roles()->detach(); //puede ser rol si le pones uno especifico (esto lo saque de la docu)
         $proveedor = Proveedor::findOrFail($request->proveedor_id);
-        $productos = explode(",", $request->productos);
-
+        $productos = $request->productos;
+        //$productos = explode(",",$request->productos);
         $accesorio->nro_articulo = $request->nro_articulo;
         $accesorio->nombre = $request->nombre;
         $accesorio->precio = $request->precio;
