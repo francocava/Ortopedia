@@ -59,9 +59,9 @@ class AccesorioController extends Controller
      */
     public function show(Accesorio $accesorio)
     {
-        $productos= $accesorio->productos()->get();
+        $accesorio->productos= $accesorio->productos()->get();
         
-        return response()->json($productos);
+        return response()->json($accesorio);
     }
 
     /**
@@ -86,8 +86,8 @@ class AccesorioController extends Controller
         $accesorio->productos()->detach(); //Le saca los productos
         $accesorio->save();
         
-        foreach ($productos as $producto_id) {
-            $accesorio->productos()->attach($producto_id);
+        foreach ($productos as $producto) {
+            $accesorio->productos()->attach($producto['id']);
         }
 
         return response()->json($accesorio);
