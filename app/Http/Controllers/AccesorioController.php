@@ -43,8 +43,8 @@ class AccesorioController extends Controller
         }
         */
 
-        foreach ($productos as $producto_id) {
-            $accesorio->productos()->attach($producto_id);
+        foreach ($productos as $producto) {
+            $accesorio->productos()->attach($producto['id']);
         }
 
         return response()->json($accesorio);
