@@ -30,11 +30,14 @@ class PedidoController extends Controller
      */
     public function store(Request $request)
     {
+        logger($request);
+        logger($request->cliente_id['id']);
+        logger($request->usuario_id);
         $pedido = new Pedido();
         $productos = $request->productos;
         $accesorios = $request->accesorios;
 
-        $pedido->cliente_id = $request->cliente_id;
+        $pedido->cliente_id = $request->cliente_id['id'];
         $pedido->sucursal_id = $request->sucursal_id;
         $pedido->usuario_id = $request->usuario_id;
         $pedido->importe = $request->importe;
@@ -45,14 +48,14 @@ class PedidoController extends Controller
         $pedido->save();
 
         if ($productos && sizeof($productos)) { //es decir, si no esta vacia la lista
-            foreach($productos as $producto_id) {
+            foreach($productos as $producto) {
                 // Aca me tiene que guardar cada producto en pedido_items
-                $producto = Producto::findOrFail($producto_id);
+                //$producto = Producto::findOrFail($productoNuevo['id']);
                 $pedidoItem = new PedidoItem();
 
                 $pedidoItem->pedido_id = $pedido->id;
-                $pedidoItem->producto_id = $producto->id;
-                $pedidoItem->precio_item = $producto->precio;
+                $pedidoItem->producto_id = $producto['id'];
+                $pedidoItem->precio_item = $producto['precio'];
 
                 $pedidoItem->pedido()->associate($pedido);
 
@@ -62,14 +65,14 @@ class PedidoController extends Controller
 
         if ($accesorios && sizeof($accesorios)) { //si no esta vacia la lista
 
-            foreach($accesorios as $acc_id) {
+            foreach($accesorios as $acc) {
                 // y aca cada accesorio en pedido_items
-                $accesorio = Accesorio::findOrFail($acc_id);
+                //$accesorio = Accesorio::findOrFail($acc['id']);
                 $pedidoItem = new PedidoItem();
 
                 $pedidoItem->pedido_id = $pedido->id;
-                $pedidoItem->accesorio_id = $accesorio->id;
-                $pedidoItem->precio_item = $accesorio->precio;
+                $pedidoItem->accesorio_id = $acc['id'];
+                $pedidoItem->precio_item = $acc['precio'];
 
                 $pedidoItem->pedido()->associate($pedido);
 

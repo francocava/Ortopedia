@@ -27,6 +27,7 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
+        logger($request);
         $producto = new Producto();
         $proveedor = Proveedor::findOrFail($request->proveedor_id);
 
@@ -38,8 +39,8 @@ class ProductoController extends Controller
         $producto->proveedor()->associate($proveedor);
         $producto->save();
 
-        foreach ($accesorios as $accesorio_id) {
-            $producto->accesorios()->attach($accesorio_id);
+        foreach ($accesorios as $accesorio) {
+            $producto->accesorios()->attach($accesorio['id']);
         }
 
         return response()->json($producto);
