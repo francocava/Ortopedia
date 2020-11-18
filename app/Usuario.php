@@ -10,8 +10,6 @@ class Usuario extends Authenticatable
 {
     use HasApiTokens, SoftDeletes;
 
-    protected $table = 'Usuarios';
-
     protected $with = ['Rol'];
 
     protected $hidden = [
