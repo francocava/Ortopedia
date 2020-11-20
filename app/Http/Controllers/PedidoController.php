@@ -30,14 +30,11 @@ class PedidoController extends Controller
      */
     public function store(Request $request)
     {
-        logger($request);
-        logger($request->cliente_id['id']);
-        logger($request->usuario_id);
         $pedido = new Pedido();
         $productos = $request->productos;
         $accesorios = $request->accesorios;
 
-        $pedido->cliente_id = $request->cliente_id['id'];
+        $pedido->cliente_id = $request->cliente['id'];
         $pedido->sucursal_id = $request->sucursal_id;
         $pedido->usuario_id = $request->usuario_id;
         $pedido->importe = $request->importe;
