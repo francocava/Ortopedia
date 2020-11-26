@@ -18,7 +18,6 @@ class CreateFacturasTable extends Migration
             $table->foreignId('pedido_id');
             $table->date('fecha_fac');
             $table->float('importe');
-            $table->string('fl_ct');
             $table->timestamps();
             $table->softDeletes();
 

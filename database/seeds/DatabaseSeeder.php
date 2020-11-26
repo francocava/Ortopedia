@@ -168,7 +168,6 @@ class DatabaseSeeder extends Seeder
             'pedido_id' => '1',
             'fecha_fac' => '2020/10/23',
             'importe' => '232',
-            'fl_ct' => 'fl'
         ]);
 
         DB::table('pedido_items')->insert([

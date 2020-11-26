@@ -30,7 +30,7 @@ class FacturaController extends Controller
         $factura->pedido_id = $request->id;
         $factura->fecha_fac = $request->fecha_ingreso_autorizacion;
         $factura->importe = $request->importe;
-        $factura->fl_ct = $request->fl_ct;
+        //$factura->fl_ct = $request->fl_ct;
 
         $factura->save();
 
