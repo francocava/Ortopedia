@@ -18,7 +18,7 @@ class CreateProductosTable extends Migration
             $table->id();
             $table->foreignId('proveedor_id');
             $table->string('nombre');
-            $table->float('precio')->nullable();
+            $table->bigInteger('precio')->nullable();
             $table->integer('nro_articulo')->nullable();
             $table->timestamps();
             $table->softDeletes();
