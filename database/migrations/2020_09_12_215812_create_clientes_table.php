@@ -18,9 +18,9 @@ class CreateClientesTable extends Migration
             $table->foreignId('obra_id');
             $table->string('nombre');
             $table->string('apellido');
-            $table->integer('dni');
+            $table->integer('dni')->nullable();
             $table->string('contacto')->nullable();
-            $table->string('telefono');
+            $table->string('telefono')->nullable();
             $table->string('nro_afiliado')->nullable();
             $table->timestamps();
             $table->softDeletes();
