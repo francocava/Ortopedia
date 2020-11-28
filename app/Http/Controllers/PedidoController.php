@@ -41,6 +41,7 @@ class PedidoController extends Controller
         $pedido->fecha_ingreso_autorizacion = $request->fecha_ingreso_autorizacion;
         $pedido->fecha_retiro = $request->fecha_retiro;
         $pedido->nro_recibo_proveedor = $request->nro_recibo_proveedor;
+        $pedido->observaciones = $request->observaciones;
 
         $pedido->save();
 

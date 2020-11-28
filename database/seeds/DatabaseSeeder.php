@@ -161,6 +161,7 @@ class DatabaseSeeder extends Seeder
             'fecha_retiro' => '2020/11/22',
             'importe' => '9090',
             'nro_recibo_proveedor' => '32434',
+            'observaciones' => 'Du hast mich'
         ]);
 
         DB::table('facturas')->insert([

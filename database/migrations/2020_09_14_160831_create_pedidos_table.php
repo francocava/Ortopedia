@@ -18,10 +18,11 @@ class CreatePedidosTable extends Migration
             $table->foreignId('cliente_id');
             $table->foreignId('sucursal_id');
             $table->foreignId('usuario_id');
-            $table->date('fecha_ingreso_autorizacion');
-            $table->date('fecha_retiro');
+            $table->date('fecha_ingreso_autorizacion')->nullable();
+            $table->date('fecha_retiro')->nullable();
             $table->float('importe')->nullable();
             $table->bigInteger('nro_recibo_proveedor')->nullable();
+            $table->string('observaciones')->nullable();
             $table->timestamps();
             $table->softDeletes();
 
