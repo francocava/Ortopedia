@@ -34,6 +34,7 @@ class PagoController extends Controller
         $proveedor = Proveedor::findOrFail($request->proveedor_id);
 
         $pago->monto = $request->monto;
+        $pago->nro_confirmacion = $request->nro_confirmacion;
         $pago->pedido()->associate($pedido);
         $pago->formaPago()->associate($formaPago);
         $pago->proveedor()->associate($proveedor);
@@ -66,6 +67,7 @@ class PagoController extends Controller
         $formaPago = FormaPago::findOrFail($request->forma_pago_id);
         $proveedor = Proveedor::findOrFail($request->proveedor_id);
         $pago->monto = $request->monto;
+        $pago->nro_confirmacion = $request->nro_confirmacion;
 
         //puede que rompa genera mal el nombre los ids 
         $pedido->pago()->save($pago);

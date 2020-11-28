@@ -18,6 +18,7 @@ class CreatePagosTable extends Migration
             $table->foreignId('proveedor_id');
             $table->foreignId('pedido_id');
             $table->foreignId('forma_pago_id');
+            $table->integer('nro_confirmacion')->nullable();
             $table->float('monto');
             $table->timestamps();
             $table->softDeletes();
