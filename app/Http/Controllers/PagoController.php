@@ -63,16 +63,12 @@ class PagoController extends Controller
      */
     public function update(Request $request, Pago $pago)
     {
-        $pedido = Pedido::findOrFail($request->pedido_id);
-        $formaPago = FormaPago::findOrFail($request->forma_pago_id);
-        $proveedor = Proveedor::findOrFail($request->proveedor_id);
         $pago->monto = $request->monto;
         $pago->nro_confirmacion = $request->nro_confirmacion;
 
-        //puede que rompa genera mal el nombre los ids 
-        $pedido->pago()->save($pago);
-        $formaPago->pago()->save($pago);
-        $proveedor->pago()->save($pago);
+        $pago->pedido_id = $request->pedido_id;
+        $pago->forma_pago_id = $request->forma_pago_id;
+        $pago->proveedor_id = $request->proveedor_id;
 
         $pago->save();
 

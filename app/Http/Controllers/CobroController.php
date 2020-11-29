@@ -63,13 +63,10 @@ class CobroController extends Controller
      */
     public function update(Request $request, Cobro $cobro)
     {
-        $pedido = Pedido::findOrFail($request->pedido_id);
-        $formaPago = FormaPago::findOrFail($request->forma_pago_id);
 
         $cobro->monto = $request->monto;
-
-        $pedido->cobro()->save($cobro);
-        $formaPago->cobro()->save($cobro);
+        $cobro->forma_pago_id = $request->forma_pago_id;
+        $cobro->pedido_id = $request->pedido_id;
 
         $cobro->save();
 
