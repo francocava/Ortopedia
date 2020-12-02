@@ -18,6 +18,7 @@ class CreatePedidosTable extends Migration
             $table->foreignId('cliente_id');
             $table->foreignId('sucursal_id');
             $table->foreignId('usuario_id');
+            $table->boolean('confirmado');
             $table->date('fecha_ingreso_autorizacion')->nullable();
             $table->date('fecha_retiro')->nullable();
             $table->float('importe')->nullable();
