@@ -2,24 +2,28 @@
 
 namespace App\Http\Controllers;
 
-use App\Accesorio;
 use App\Pedido;
 use App\PedidoItem;
-use App\PedidoItemAccesorio;
-use App\Producto;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class PedidoController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return response()->json(Pedido::with(['cliente:id,obra_id,nombre,apellido','usuario:id,usuario','sucursal'])->where('confirmado','=',1)->get());
+        if ($request->confirmado === 1) {
+            return response()->json(Pedido::with(['cliente:id,obra_id,nombre,apellido', 'usuario:id,usuario', 'sucursal'])->where('confirmado', 1)->get());
+        }
+        else if ($request->confirmado === 0) {
+            return response()->json(Pedido::with(['cliente:id,obra_id,nombre,apellido', 'usuario:id,usuario', 'sucursal'])->where('confirmado', 0)->get());
+        }
+
+        return response()->json(Pedido::with(['cliente:id,obra_id,nombre,apellido', 'usuario:id,usuario', 'sucursal'])->get());
     }
 
     /**
@@ -90,9 +94,7 @@ class PedidoController extends Controller
      */
     public function show($id)
     {
-        //return response()->json(Pedido::findOrFail($id));
-        return response()->json(Pedido::with(['cliente:id,obra_id,nombre,apellido','usuario:id,usuario','sucursal'])->where('confirmado','=',0)->get());
-
+        return response()->json(Pedido::findOrFail($id));
     }
 
     /**
@@ -104,7 +106,6 @@ class PedidoController extends Controller
      */
     public function update(Request $request, Pedido $pedido)
     {
-        //Para modificar un pedido_item hay que ir a su correspondiente controller
         $pedido->cliente_id = $request->cliente_id;
         $pedido->sucursal_id = $request->sucursal_id;
         $pedido->importe = $request->importe;
