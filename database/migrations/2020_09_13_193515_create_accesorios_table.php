@@ -18,6 +18,7 @@ class CreateAccesoriosTable extends Migration
             $table->foreignId('proveedor_id');
             $table->integer('nro_articulo')->nullable();
             $table->string('nombre');
+            $table->text('descripcion')->nullable();
             $table->bigInteger('precio')->nullable();
             $table->timestamps();
             $table->softDeletes();
@@ -25,7 +26,7 @@ class CreateAccesoriosTable extends Migration
             $table->foreign('proveedor_id')
                     ->references('id')->on('proveedores')
                     ->onUpdate('cascade')
-                    ->onDelete('restrict'); 
+                    ->onDelete('restrict');
         });
     }
 

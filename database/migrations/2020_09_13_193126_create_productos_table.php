@@ -18,6 +18,7 @@ class CreateProductosTable extends Migration
             $table->id();
             $table->foreignId('proveedor_id');
             $table->string('nombre');
+            $table->text('descripcion')->nullable();
             $table->bigInteger('precio')->nullable();
             $table->integer('nro_articulo')->nullable();
             $table->timestamps();
@@ -26,10 +27,9 @@ class CreateProductosTable extends Migration
             $table->foreign('proveedor_id')
                     ->references('id')->on('proveedores')
                     ->onUpdate('cascade')
-                    ->onDelete('restrict'); 
+                    ->onDelete('restrict');
         });
 
-        
 
     }
 

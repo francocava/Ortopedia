@@ -23,7 +23,7 @@ class CreatePedidosTable extends Migration
             $table->date('fecha_retiro')->nullable();
             $table->float('importe')->nullable();
             $table->bigInteger('nro_recibo_proveedor')->nullable();
-            $table->string('observaciones')->nullable();
+            $table->text('observaciones')->nullable();
             $table->timestamps();
             $table->softDeletes();
 

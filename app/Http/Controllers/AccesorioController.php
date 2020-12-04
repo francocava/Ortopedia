@@ -33,6 +33,7 @@ class AccesorioController extends Controller
         $accesorio->nro_articulo = $request->nro_articulo;
         $accesorio->nombre = $request->nombre;
         $accesorio->precio = $request->precio;
+        $accesorio->descripcion = $request->descripcion;
 
         $accesorio->proveedor()->associate($proveedor);
         $accesorio->save();
@@ -81,6 +82,7 @@ class AccesorioController extends Controller
         $accesorio->nro_articulo = $request->nro_articulo;
         $accesorio->nombre = $request->nombre;
         $accesorio->precio = $request->precio;
+        $accesorio->descripcion = $request->descripcion;
         $proveedor->accesorios()->save($accesorio);
 
         $accesorio->productos()->detach(); //Le saca los productos
