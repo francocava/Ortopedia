@@ -16,14 +16,7 @@ class PedidoController extends Controller
      */
     public function index(Request $request)
     {
-        if ($request->confirmado === 1) {
-            return response()->json(Pedido::with(['cliente:id,obra_id,nombre,apellido', 'usuario:id,usuario', 'sucursal'])->where('confirmado', 1)->get());
-        }
-        else if ($request->confirmado === 0) {
-            return response()->json(Pedido::with(['cliente:id,obra_id,nombre,apellido', 'usuario:id,usuario', 'sucursal'])->where('confirmado', 0)->get());
-        }
-
-        return response()->json(Pedido::with(['cliente:id,obra_id,nombre,apellido', 'usuario:id,usuario', 'sucursal'])->get());
+        return response()->json(Pedido::with(['cliente:id,obra_id,nombre,apellido', 'usuario:id,usuario', 'sucursal'])->where('confirmado',$request->confirmado)->get());
     }
 
     /**
