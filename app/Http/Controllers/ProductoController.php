@@ -76,7 +76,7 @@ class ProductoController extends Controller
         $producto->precio = $request->precio;
         $producto->descripcion = $request->descripcion;
         $proveedor->productos()->save($producto);
-        
+
         $producto->accesorios()->detach(); //Le saca todos sus accesorios
         $producto->save();
 

@@ -21,7 +21,7 @@ class CreatePedidosTable extends Migration
             $table->boolean('confirmado');
             $table->date('fecha_ingreso_autorizacion')->nullable();
             $table->date('fecha_retiro')->nullable();
-            $table->float('importe')->nullable();
+            $table->float('importe', 8, 2)->nullable();
             $table->bigInteger('nro_recibo_proveedor')->nullable();
             $table->text('observaciones')->nullable();
             $table->timestamps();

@@ -19,7 +19,7 @@ class CreateAccesoriosTable extends Migration
             $table->integer('nro_articulo')->nullable();
             $table->string('nombre');
             $table->text('descripcion')->nullable();
-            $table->bigInteger('precio')->nullable();
+            $table->float('precio', 8, 2)->nullable();
             $table->timestamps();
             $table->softDeletes();
 
