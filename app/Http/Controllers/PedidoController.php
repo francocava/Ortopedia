@@ -85,9 +85,11 @@ class PedidoController extends Controller
      * @param  \App\Pedido  $pedido
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Pedido $pedido)
     {
-        return response()->json(Pedido::findOrFail($id));
+        $pedido->items = $pedido->pedidoItems()->get();
+
+        return response()->json($pedido);
     }
 
     /**
