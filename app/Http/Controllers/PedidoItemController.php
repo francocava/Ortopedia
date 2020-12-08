@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Accesorio;
 use App\Pedido;
 use App\PedidoItem;
 use App\Producto;
@@ -53,19 +54,20 @@ class PedidoItemController extends Controller
      */
     public function update(Request $request, PedidoItem $pedidoItem)
     {
+        logger($request);
         $pedido = Pedido::findOrFail($request->pedido_id);
         $item = null;
         if($request->producto_id){
             $item = Producto::findOrFail($request->producto_id); //es decir, si es un producto
         } else {
-            $item = Producto::findOrFail($request->accesorio_id);
+            $item = Accesorio::findOrFail($request->accesorio_id);
         }
 
         $pedidoItem->precio_item = $request->precio_item;
         $pedidoItem->porcentaje_os = $request->porcentaje_os;
 
-        $pedido->pedidoItem()->save($pedidoItem);
-        $item->pedidoItem()->save($pedidoItem);
+        $pedido->pedidoItems()->save($pedidoItem);
+        $item->pedidoItems()->save($pedidoItem);
 
         $pedidoItem->save();
 
