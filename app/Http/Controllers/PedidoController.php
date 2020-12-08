@@ -16,7 +16,11 @@ class PedidoController extends Controller
      */
     public function index(Request $request)
     {
-        return response()->json(Pedido::with(['cliente:id,obra_id,nombre,apellido', 'usuario:id,usuario', 'sucursal'])->where('confirmado',$request->confirmado)->get());
+        if ($request->confirmado) {
+            return response()->json(Pedido::with(['cliente:id,obra_id,nombre,apellido', 'usuario:id,usuario', 'sucursal'])->where('confirmado', $request->confirmado)->get());
+        }
+
+        return response()->json(Pedido::with(['cliente:id,obra_id,nombre,apellido', 'usuario:id,usuario', 'sucursal'])->get());
     }
 
     /**
@@ -44,7 +48,7 @@ class PedidoController extends Controller
         $pedido->save();
 
         if ($productos && sizeof($productos)) { //es decir, si no esta vacia la lista
-            foreach($productos as $producto) {
+            foreach ($productos as $producto) {
                 // Aca me tiene que guardar cada producto en pedido_items
                 //$producto = Producto::findOrFail($productoNuevo['id']);
                 $pedidoItem = new PedidoItem();
@@ -60,8 +64,7 @@ class PedidoController extends Controller
         }
 
         if ($accesorios && sizeof($accesorios)) { //si no esta vacia la lista
-
-            foreach($accesorios as $acc) {
+            foreach ($accesorios as $acc) {
                 // y aca cada accesorio en pedido_items
                 //$accesorio = Accesorio::findOrFail($acc['id']);
                 $pedidoItem = new PedidoItem();
