@@ -131,8 +131,6 @@ class PedidoController extends Controller
 
         foreach ($pedido->pedidoItems as $item) {
             $item->delete();
-            $item->delete();
-            $item->delete();
         }
 
         $pedido->delete();
