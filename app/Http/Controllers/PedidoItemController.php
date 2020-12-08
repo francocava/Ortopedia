@@ -26,12 +26,10 @@ class PedidoItemController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    /*
-    public function store(Request $request)
-    {
-        No hace falta el store ya que se hace en PedidoController
-    }
-    */
+    // public function store(Request $request)
+    // {
+    //     // No hace falta el store ya que se hace en PedidoController
+    // }
 
     /**
      * Display the specified resource.
@@ -54,11 +52,11 @@ class PedidoItemController extends Controller
      */
     public function update(Request $request, PedidoItem $pedidoItem)
     {
-        logger($request);
         $pedido = Pedido::findOrFail($request->pedido_id);
         $item = null;
-        if($request->producto_id){
-            $item = Producto::findOrFail($request->producto_id); //es decir, si es un producto
+
+        if ($request->producto_id) {
+            $item = Producto::findOrFail($request->producto_id);
         } else {
             $item = Accesorio::findOrFail($request->accesorio_id);
         }
