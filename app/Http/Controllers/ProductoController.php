@@ -27,7 +27,6 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
-        logger($request);
         $producto = new Producto();
         $proveedor = Proveedor::findOrFail($request->proveedor_id);
 
@@ -80,8 +79,10 @@ class ProductoController extends Controller
         $producto->accesorios()->detach(); //Le saca todos sus accesorios
         $producto->save();
 
-        foreach($accesorios as $accesorio) {
-            $producto->accesorios()->attach($accesorio['id']); //le pone los nuevos
+        if($accesorios != null) {
+            foreach($accesorios as $accesorio) {
+                $producto->accesorios()->attach($accesorio['id']); //le pone los nuevos
+            }
         }
 
         return response()->json($producto);
