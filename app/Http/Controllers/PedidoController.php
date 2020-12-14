@@ -34,11 +34,12 @@ class PedidoController extends Controller
         $pedido = new Pedido();
         $productos = $request->productos;
         $accesorios = $request->accesorios;
+        $importe = 0;
+
 
         $pedido->cliente_id = $request->cliente['id'];
         $pedido->sucursal_id = $request->sucursal_id;
         $pedido->usuario_id = $request->usuario_id;
-        $pedido->importe = $request->importe;
         $pedido->fecha_ingreso_autorizacion = $request->fecha_ingreso_autorizacion;
         $pedido->fecha_retiro = $request->fecha_retiro;
         $pedido->nro_recibo_proveedor = $request->nro_recibo_proveedor;
@@ -56,7 +57,7 @@ class PedidoController extends Controller
                 $pedidoItem->pedido_id = $pedido->id;
                 $pedidoItem->producto_id = $producto['id'];
                 $pedidoItem->precio_item = $producto['precio'];
-
+                $importe += $producto['precio'];
                 $pedidoItem->pedido()->associate($pedido);
 
                 $pedidoItem->save();
@@ -72,12 +73,14 @@ class PedidoController extends Controller
                 $pedidoItem->pedido_id = $pedido->id;
                 $pedidoItem->accesorio_id = $acc['id'];
                 $pedidoItem->precio_item = $acc['precio'];
-
+                $importe += $acc['precio'];
                 $pedidoItem->pedido()->associate($pedido);
 
                 $pedidoItem->save();
             }
         }
+        $pedido->importe = $importe;
+        $pedido->save();
 
         return response()->json($pedido);
     }
