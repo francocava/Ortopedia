@@ -16,11 +16,24 @@ class PedidoController extends Controller
      */
     public function index(Request $request)
     {
-        if ($request->confirmado != null) {
-            return response()->json(Pedido::with(['cliente:id,obra_id,nombre,apellido', 'usuario:id,usuario', 'sucursal'])->where('confirmado', $request->confirmado)->get());
+
+        $pedidos = Pedido::with(['cliente:id,obra_id,nombre,apellido', 'usuario:id,usuario', 'sucursal:id,nombre'])
+            ->when($request->confirmado != null, function ($query) use ($request) {
+                return $query->where('confirmado', $request->confirmado);
+            })
+            ->get();
+
+        //! Incluir el foreach adentro de la query
+
+        foreach ($pedidos as $pedido) {
+            $importe = 0;
+            foreach ($pedido->pedidoItems as $item) {
+                $importe += $item->precio_final;
+            }
+            $pedido->importe = $importe;
         }
 
-        return response()->json(Pedido::with(['cliente:id,obra_id,nombre,apellido', 'usuario:id,usuario', 'sucursal'])->get());
+        return response()->json($pedidos);
     }
 
     /**
