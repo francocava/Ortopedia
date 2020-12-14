@@ -79,8 +79,8 @@ class ProductoController extends Controller
         $producto->accesorios()->detach(); //Le saca todos sus accesorios
         $producto->save();
 
-        if($accesorios != null) {
-            foreach($accesorios as $accesorio) {
+        if ($accesorios != null) {
+            foreach ($accesorios as $accesorio) {
                 $producto->accesorios()->attach($accesorio['id']); //le pone los nuevos
             }
         }
