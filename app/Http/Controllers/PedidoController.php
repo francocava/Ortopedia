@@ -14,7 +14,7 @@ class PedidoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request = null)
+    public function index(Request $request)
     {
         $pedidos = Pedido::with(['cliente:id,obra_id,nombre,apellido', 'usuario:id,usuario', 'sucursal:id,nombre'])
             ->when($request->confirmado != null, function ($query) use ($request) {
