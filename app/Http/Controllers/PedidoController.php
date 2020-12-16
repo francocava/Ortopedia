@@ -121,7 +121,6 @@ class PedidoController extends Controller
     {
         $pedido->cliente_id = $request->cliente_id;
         $pedido->sucursal_id = $request->sucursal_id;
-        $pedido->importe = $request->importe;
         $pedido->usuario_id = $request->usuario_id;
         $pedido->fecha_ingreso_autorizacion = $request->fecha_ingreso_autorizacion;
         $pedido->fecha_retiro = $request->fecha_retiro;
