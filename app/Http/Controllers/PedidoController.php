@@ -91,8 +91,8 @@ class PedidoController extends Controller
                 $pedidoItem->save();
             }
         }
-        $pedido->importe = $importe;
-        $pedido->save();
+        //$pedido->importe = $importe;
+        //$pedido->save();
 
         return response()->json($pedido);
     }

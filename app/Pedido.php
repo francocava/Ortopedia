@@ -9,7 +9,7 @@ class Pedido extends Model
 {
     use SoftDeletes;
 
-    protected $with = ['cliente:id,apellido'];
+    protected $with = ['cliente'];
 
     protected $appends = ['cancelado'];
 
