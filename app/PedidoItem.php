@@ -9,7 +9,7 @@ class PedidoItem extends Model
 {
     use SoftDeletes;
 
-    protected $with = ['producto:id,nombre', 'accesorio:id,nombre']; //poniendolo asi solo me trae el nombre
+    protected $with = ['producto:id,nombre,descripcion', 'accesorio:id,nombre,descripcion']; //poniendolo asi solo me trae el nombre
 
     protected $appends = ['precio_final'];
 

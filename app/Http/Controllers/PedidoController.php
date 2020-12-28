@@ -105,6 +105,11 @@ class PedidoController extends Controller
      */
     public function show(Pedido $pedido)
     {
+        $importe = $pedido->pedidoItems->reduce(function ($carry, $item) {
+            return $carry + $item->precio_final;
+        }, 0);
+
+        $pedido->importe = $importe;
         $pedido->items = $pedido->pedidoItems()->get();
 
         return response()->json($pedido);
