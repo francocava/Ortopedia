@@ -28,7 +28,7 @@ class PedidoItemController extends Controller
      */
     // public function store(Request $request)
     // {
-    //     // No hace falta el store ya que se hace en PedidoController
+    //   No hace falta el store ya que se hace en PedidoController
     // }
 
     /**
@@ -63,7 +63,7 @@ class PedidoItemController extends Controller
 
         $pedidoItem->precio_item = $request->precio_item;
         $pedidoItem->porcentaje_os = $request->porcentaje_os;
-
+        $pedidoItem->cantidad = $request->cantidad;
         $pedido->pedidoItems()->save($pedidoItem);
         $item->pedidoItems()->save($pedidoItem);
 
