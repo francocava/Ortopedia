@@ -68,7 +68,7 @@ class PedidoController extends Controller
 
                 $pedidoItem->pedido_id = $pedido->id;
                 $pedidoItem->producto_id = $producto['id'];
-                $pedidoItem->precio_item = $producto['precio'];
+                $pedidoItem->precio_item = $producto['precio']*$producto['cantidad'];
                 $pedidoItem->cantidad = $producto['cantidad'];
                 $importe += $producto['precio'];
                 $pedidoItem->pedido()->associate($pedido);
@@ -85,7 +85,7 @@ class PedidoController extends Controller
 
                 $pedidoItem->pedido_id = $pedido->id;
                 $pedidoItem->accesorio_id = $acc['id'];
-                $pedidoItem->precio_item = $acc['precio'];
+                $pedidoItem->precio_item = $acc['precio']*$acc['cantidad'];
                 $pedidoItem->cantidad = $acc['cantidad'];
                 $importe += $acc['precio'];
                 $pedidoItem->pedido()->associate($pedido);
