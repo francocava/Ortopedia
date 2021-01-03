@@ -15,34 +15,28 @@ class CreatePedidosTable extends Migration
     {
         Schema::create('pedidos', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('clie_id');
-            $table->foreignId('suc_id');
-            $table->foreignId('estado_id');
+            $table->foreignId('cliente_id');
+            $table->foreignId('sucursal_id');
             $table->foreignId('usuario_id');
-            $table->date('fecha_ingreso_autorizacion');
-            $table->bigInteger('nro_autorizacion');
-            $table->date('fecha_retiro');
-            $table->float('importe_fac');
-            $table->string('fl/ct');
-            $table->bigInteger('nro_recibo_proveedor');
-            $table->boolean('cancelado');
+            $table->boolean('confirmado');
+            $table->date('fecha_ingreso_autorizacion')->nullable();
+            $table->date('fecha_retiro')->nullable();
+            $table->float('importe', 8, 2)->nullable();
+            $table->bigInteger('nro_recibo_proveedor')->nullable();
+            $table->text('observaciones')->nullable();
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('clie_id')
+            $table->foreign('cliente_id')
                 ->references('id')->on('clientes')
                 ->onUpdate('cascade')
                 ->onDelete('restrict');
 
-            $table->foreign('suc_id')
+            $table->foreign('sucursal_id')
                 ->references('id')->on('sucursales')
                 ->onUpdate('cascade')
                 ->onDelete('restrict');
 
-            $table->foreign('estado_id')
-                ->references('id')->on('estados')
-                ->onUpdate('cascade')
-                ->onDelete('restrict');
 
             $table->foreign('usuario_id')
                 ->references('id')->on('usuarios')

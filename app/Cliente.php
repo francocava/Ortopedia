@@ -9,11 +9,22 @@ class Cliente extends Model
 {
     use SoftDeletes;
 
-    public function pedido(){
+    protected $table = 'clientes'; 
+
+    /**
+     * The relationships that should always be loaded.
+     *
+     * @var array
+     */
+    protected $with = ['obraSocial'];
+
+    public function pedidos()
+    {
         return $this->hasMany('App\Pedido');
     }
 
-    public function obraSocial(){
-        return $this->belongsTo('App\ObraSocial');
+    public function obraSocial()
+    {
+        return $this->belongsTo('App\ObraSocial', 'obra_id');
     }
 }

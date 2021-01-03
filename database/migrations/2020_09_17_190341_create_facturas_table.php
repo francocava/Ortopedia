@@ -15,13 +15,16 @@ class CreateFacturasTable extends Migration
     {
         Schema::create('facturas', function (Blueprint $table) {
             $table->id();
-            $table->float('total_sin_iva');
-            $table->float('total_con_iva');
+            $table->foreignId('pedido_id');
             $table->date('fecha_fac');
             $table->float('importe');
-            $table->string('fl/ct');
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('pedido_id')
+                ->references('id')->on('pedidos')
+                ->onUpdate('cascade')
+                ->onDelete('restrict');
         });
     }
 

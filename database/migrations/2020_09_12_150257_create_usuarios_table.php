@@ -18,7 +18,7 @@ class CreateUsuariosTable extends Migration
             $table->foreignId('rol_id');
             $table->string('nombre');
             $table->string('apellido');
-            $table->string('usuario');
+            $table->string('usuario')->unique();
             $table->string('password');
             $table->timestamps();
             $table->softDeletes();
