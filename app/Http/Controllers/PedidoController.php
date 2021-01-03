@@ -22,7 +22,7 @@ class PedidoController extends Controller
             })
             ->get();
 
-        //! Incluir el foreach adentro de la query
+        //! Incluir el foreach adentro de la query o crear un accesor
 
         $pedidos->each(function ($pedido) {
             $importe = $pedido->pedidoItems->reduce(function ($carry, $item) {
@@ -46,8 +46,6 @@ class PedidoController extends Controller
         $pedido = new Pedido();
         $productos = $request->productos;
         $accesorios = $request->accesorios;
-        $importe = 0;
-
 
         $pedido->cliente_id = $request->cliente['id'];
         $pedido->sucursal_id = $request->sucursal_id;
@@ -63,14 +61,12 @@ class PedidoController extends Controller
         if ($productos && sizeof($productos)) { //es decir, si no esta vacia la lista
             foreach ($productos as $producto) {
                 // Aca me tiene que guardar cada producto en pedido_items
-                //$producto = Producto::findOrFail($productoNuevo['id']);
                 $pedidoItem = new PedidoItem();
 
                 $pedidoItem->pedido_id = $pedido->id;
                 $pedidoItem->producto_id = $producto['id'];
-                $pedidoItem->precio_item = $producto['precio']*$producto['cantidad'];
+                $pedidoItem->precio_item = $producto['precio'] * $producto['cantidad'];
                 $pedidoItem->cantidad = $producto['cantidad'];
-                $importe += $producto['precio'];
                 $pedidoItem->pedido()->associate($pedido);
 
                 $pedidoItem->save();
@@ -80,21 +76,17 @@ class PedidoController extends Controller
         if ($accesorios && sizeof($accesorios)) { //si no esta vacia la lista
             foreach ($accesorios as $acc) {
                 // y aca cada accesorio en pedido_items
-                //$accesorio = Accesorio::findOrFail($acc['id']);
                 $pedidoItem = new PedidoItem();
 
                 $pedidoItem->pedido_id = $pedido->id;
                 $pedidoItem->accesorio_id = $acc['id'];
-                $pedidoItem->precio_item = $acc['precio']*$acc['cantidad'];
+                $pedidoItem->precio_item = $acc['precio'] * $acc['cantidad'];
                 $pedidoItem->cantidad = $acc['cantidad'];
-                $importe += $acc['precio'];
                 $pedidoItem->pedido()->associate($pedido);
 
                 $pedidoItem->save();
             }
         }
-        //$pedido->importe = $importe;
-        //$pedido->save();
 
         return response()->json($pedido);
     }
@@ -107,6 +99,8 @@ class PedidoController extends Controller
      */
     public function show(Pedido $pedido)
     {
+        //! Incluir el foreach adentro de la query o crear un accesor
+
         $importe = $pedido->pedidoItems->reduce(function ($carry, $item) {
             return $carry + $item->precio_final;
         }, 0);
@@ -149,10 +143,6 @@ class PedidoController extends Controller
     public function destroy($id)
     {
         $pedido = Pedido::findOrFail($id);
-
-        foreach ($pedido->pedidoItems as $item) {
-            $item->delete();
-        }
 
         $pedido->delete();
 

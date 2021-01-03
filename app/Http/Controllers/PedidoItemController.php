@@ -17,7 +17,7 @@ class PedidoItemController extends Controller
      */
     public function index()
     {
-        return response()->json(PedidoItem::all());
+        return response()->json(PedidoItem::has('pedido')->get());
     }
 
     /**
@@ -39,7 +39,7 @@ class PedidoItemController extends Controller
      */
     public function show($id)
     {
-        return response()->json(PedidoItem::findOrFail($id));
+        return response()->json(PedidoItem::findOrFail($id)->has('pedido')->first());
     }
 
 

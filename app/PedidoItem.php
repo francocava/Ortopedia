@@ -30,6 +30,6 @@ class PedidoItem extends Model
 
     public function getPrecioFinalAttribute()
     {
-        return (($this->precio_item - ($this->precio_item) * ($this->porcentaje_os / 100))*$this->cantidad);
+        return (($this->precio_item - ($this->precio_item) * ($this->porcentaje_os / 100)) * $this->cantidad);
     }
 }
