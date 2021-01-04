@@ -11,7 +11,7 @@ class Pedido extends Model
 
     protected $with = ['cliente'];
 
-    protected $appends = ['cancelado'];
+    //protected $appends = ['cancelado'];
 
     public function cliente()
     {
@@ -53,8 +53,8 @@ class Pedido extends Model
         return $this->hasMany('App\Factura');
     }
 
-    public function getCanceladoAttribute($value)
+/*     public function getCanceladoAttribute($value)
     {
         return false;
-    }
+    } */
 }

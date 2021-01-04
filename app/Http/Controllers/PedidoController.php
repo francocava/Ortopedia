@@ -29,6 +29,15 @@ class PedidoController extends Controller
                 return $carry + $item->precio_final;
             }, 0);
 
+            $pagado = $pedido->cobros->reduce(function ($carry, $item) {
+                return $carry + $item->monto;
+            }, 0);
+
+            if($pagado>=$importe){
+                $pedido->cancelado = true;
+            }else{
+                $pedido->cancelado = false;
+            }
             $pedido->importe = $importe;
         });
 
