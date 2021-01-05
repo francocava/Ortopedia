@@ -9,6 +9,9 @@ class Accesorio extends Model
 {
     use SoftDeletes;
 
+    protected $appends = ['cantidad'];
+
+
     /**
      * The relationships that should always be loaded.
      *
@@ -28,5 +31,9 @@ class Accesorio extends Model
     public function productos()
     {
         return $this->belongsToMany('App\Producto', 'accesorio_producto');
+    }
+
+    public function getCantidadAttribute() {
+        return 1; //esto es un mini hack para el front
     }
 }
