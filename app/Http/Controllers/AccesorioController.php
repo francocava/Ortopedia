@@ -38,18 +38,9 @@ class AccesorioController extends Controller
         $accesorio->proveedor()->associate($proveedor);
         $accesorio->save();
 
-        /*
-        if ($productos && sizeof($productos)) foreach ($productos as $producto_id) {
-            $accesorio->productos()->attach($producto_id);
-        }
-        */
-
-        foreach ($productos as $producto) {
-            $accesorio->productos()->attach($producto['id']);
-        }
+        foreach ($productos as $producto) $accesorio->productos()->attach($producto['id']);
 
         return response()->json($accesorio);
-        
     }
 
     /**
@@ -61,7 +52,7 @@ class AccesorioController extends Controller
     public function show(Accesorio $accesorio)
     {
         $accesorio->productos= $accesorio->productos()->get();
-        
+
         return response()->json($accesorio);
     }
 
@@ -74,11 +65,11 @@ class AccesorioController extends Controller
      */
     public function update(Request $request, Accesorio $accesorio)
     {
-        logger($request);
         // $user->roles()->detach(); //puede ser rol si le pones uno especifico (esto lo saque de la docu)
+
         $proveedor = Proveedor::findOrFail($request->proveedor_id);
         $productos = $request->productos;
-        //$productos = explode(",",$request->productos);
+
         $accesorio->nro_articulo = $request->nro_articulo;
         $accesorio->nombre = $request->nombre;
         $accesorio->precio = $request->precio;
@@ -87,13 +78,10 @@ class AccesorioController extends Controller
 
         $accesorio->productos()->detach(); //Le saca los productos
         $accesorio->save();
-        
-        foreach ($productos as $producto) {
-            $accesorio->productos()->attach($producto['id']);
-        }
+
+        foreach ($productos as $producto) $accesorio->productos()->attach($producto['id']);
 
         return response()->json($accesorio);
-
     }
 
     /**
@@ -102,12 +90,10 @@ class AccesorioController extends Controller
      * @param  \App\Accesorio  $accesorio
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Accesorio $accesorio)
     {
-        $accesorio = Accesorio::findOrFail($id);
         $accesorio->productos()->detach(); //Le saca los productos
-        $accesorio->delete();
 
-        return response()->json($accesorio);
+        return response()->json($accesorio->delete());
     }
 }

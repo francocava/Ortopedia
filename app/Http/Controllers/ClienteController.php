@@ -19,7 +19,6 @@ class ClienteController extends Controller
         return response(Cliente::all());
     }
 
-
     /**
      * Store a newly created resource in storage.
      *
@@ -55,7 +54,6 @@ class ClienteController extends Controller
         return response()->json(Cliente::findOrFail($id));
     }
 
-
     /**
      * Update the specified resource in storage.
      *
@@ -88,11 +86,8 @@ class ClienteController extends Controller
      * @param  \App\Cliente  $cliente
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Cliente $cliente)
     {
-        $cliente = Cliente::findOrFail($id);
-        $cliente->delete();
-
-        return response()->json($cliente);
+        return response()->json($cliente->delete());
     }
 }

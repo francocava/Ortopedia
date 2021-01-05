@@ -57,7 +57,6 @@ class FacturaController extends Controller
      */
     public function update(Request $request, Factura $factura)
     {
-        logger($request);
         $factura->fecha_fac = $request->fecha_fac;
         $factura->importe = $request->importe;
         $factura->pedido_id = $request->id;
@@ -73,11 +72,8 @@ class FacturaController extends Controller
      * @param  \App\Factura  $factura
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Factura $factura)
     {
-        $factura = Factura::findOrFail($id);
-        $factura->delete();
-
-        return response()->json($factura);
+        return response()->json($factura->delete());
     }
 }

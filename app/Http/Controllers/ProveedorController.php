@@ -67,11 +67,8 @@ class ProveedorController extends Controller
      * @param  \App\Proveedor  $proveedor
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Proveedor $proveedor)
     {
-        $proveedor = Proveedor::findOrFail($id);
-        $proveedor->delete();
-
-        return response()->json($proveedor);
+        return response()->json($proveedor->delete());
     }
 }

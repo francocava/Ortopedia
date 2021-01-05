@@ -56,8 +56,6 @@ class SucursalController extends Controller
         $sucursal->nombre = $request->nombre;
         $sucursal->save();
 
-        logger($request);
-
         return response()->json($sucursal);
     }
 
@@ -67,11 +65,8 @@ class SucursalController extends Controller
      * @param  \App\Sucursal  $sucursal
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Sucursal $sucursal)
     {
-        $sucursal = Sucursal::findOrFail($id);
-        $sucursal->delete();
-
-        return response()->json($sucursal);
+        return response()->json($sucursal->delete());
     }
 }
