@@ -11,7 +11,7 @@ class Pedido extends Model
 
     protected $with = ['cliente'];
 
-    //protected $appends = ['cancelado'];
+    protected $appends = ['cancelado', 'importe'];
 
     public function cliente()
     {
@@ -53,8 +53,23 @@ class Pedido extends Model
         return $this->hasMany('App\Factura');
     }
 
-/*     public function getCanceladoAttribute($value)
+    public function getCanceladoAttribute($pedido)
     {
-        return false;
-    } */
+        $importe = $pedido->pedidoItems->reduce(function ($carry, $item) {
+            return $carry + $item->precio_final;
+        }, 0);
+
+        $pagado = $pedido->cobros->reduce(function ($carry, $item) {
+            return $carry + $item->monto;
+        }, 0);
+
+        return $pagado >= $importe;
+    }
+
+    public function getImporteAttribute($pedido)
+    {
+        return $pedido->pedidoItems->reduce(function ($carry, $item) {
+            return $carry + $item->precio_final;
+        }, 0);
+    }
 }

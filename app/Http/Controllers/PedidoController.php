@@ -22,25 +22,6 @@ class PedidoController extends Controller
             })
             ->get();
 
-        //! Incluir el foreach adentro de la query o crear un accesor
-
-        $pedidos->each(function ($pedido) {
-            $importe = $pedido->pedidoItems->reduce(function ($carry, $item) {
-                return $carry + $item->precio_final;
-            }, 0);
-
-            $pagado = $pedido->cobros->reduce(function ($carry, $item) {
-                return $carry + $item->monto;
-            }, 0);
-
-            if($pagado>=$importe){
-                $pedido->cancelado = true;
-            }else{
-                $pedido->cancelado = false;
-            }
-            $pedido->importe = $importe;
-        });
-
         return response()->json($pedidos);
     }
 
@@ -108,13 +89,6 @@ class PedidoController extends Controller
      */
     public function show(Pedido $pedido)
     {
-        //! Incluir el foreach adentro de la query o crear un accesor
-
-        $importe = $pedido->pedidoItems->reduce(function ($carry, $item) {
-            return $carry + $item->precio_final;
-        }, 0);
-
-        $pedido->importe = $importe;
         $pedido->items = $pedido->pedidoItems()->get();
 
         return response()->json($pedido);
@@ -149,12 +123,8 @@ class PedidoController extends Controller
      * @param  \App\Pedido  $pedido
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Pedido $pedido)
     {
-        $pedido = Pedido::findOrFail($id);
-
-        $pedido->delete();
-
-        return response()->json($pedido);
+        return response()->json($pedido->delete());
     }
 }
