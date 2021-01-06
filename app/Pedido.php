@@ -59,11 +59,17 @@ class Pedido extends Model
             return $carry + $item->precio_final;
         }, 0);
 
-        $pagado = $pedido->cobros->reduce(function ($carry, $item) {
+        $pagado = $pedido->pagos->reduce(function ($carry, $item) {
             return $carry + $item->monto;
         }, 0);
 
-        return $pagado >= $importe;
+        if($pagado === 0){
+            return 0;
+        }else if ($importe>$pagado){
+            return 1; //pago parcial
+        }else {
+            return 2; //pago total
+        }
     }
 
     public function getImporteAttribute($pedido)
