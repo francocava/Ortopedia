@@ -26,7 +26,7 @@ class AddCantidadToPedidoItemsTable extends Migration
     public function down()
     {
         Schema::table('pedido_items', function (Blueprint $table) {
-            //
+            $table->dropColumn('cantidad');
         });
     }
 }
