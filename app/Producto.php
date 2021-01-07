@@ -12,7 +12,6 @@ class Producto extends Model
     protected $with = ['proveedor'];
 
     protected $appends = ['cantidad'];
-    
 
     public function proveedor()
     {

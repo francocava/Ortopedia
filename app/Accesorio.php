@@ -11,13 +11,6 @@ class Accesorio extends Model
 
     protected $appends = ['cantidad'];
 
-
-    /**
-     * The relationships that should always be loaded.
-     *
-     * @var array
-     */
-
     public function pedidoItems()
     {
         return $this->hasMany('App\PedidoItem');
