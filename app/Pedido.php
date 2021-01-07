@@ -60,21 +60,17 @@ class Pedido extends Model
 
     public function getCanceladoAttribute()
     {
-        $importe = $this->pedidoItems->reduce(function ($carry, $item) {
-            return $carry + $item->precio_final;
-        }, 0);
-
         $pagado = $this->pagos->reduce(function ($carry, $item) {
             return $carry + $item->monto;
         }, 0);
 
-        if ($pagado === 0) {
-            return 0;
-        } else if ($importe > $pagado) {
-            return 1; //pago parcial
-        } else {
-            return 2; //pago total
-        }
+        if ($pagado === 0) return 0;
+
+        $importe = $this->pedidoItems->reduce(function ($carry, $item) {
+            return $carry + $item->precio_final;
+        }, 0);
+
+        return $importe > $pagado ? 1 : 2;      //? 1: Pago parcial, 2: Pago total
     }
 
     public function getImporteAttribute()
