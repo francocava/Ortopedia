@@ -53,28 +53,28 @@ class Pedido extends Model
         return $this->hasMany('App\Factura');
     }
 
-    public function getCanceladoAttribute($pedido)
+    public function getCanceladoAttribute()
     {
-        $importe = $pedido->pedidoItems->reduce(function ($carry, $item) {
+        $importe = $this->pedidoItems->reduce(function ($carry, $item) {
             return $carry + $item->precio_final;
         }, 0);
 
-        $pagado = $pedido->pagos->reduce(function ($carry, $item) {
+        $pagado = $this->pagos->reduce(function ($carry, $item) {
             return $carry + $item->monto;
         }, 0);
 
-        if($pagado === 0){
+        if ($pagado === 0) {
             return 0;
-        }else if ($importe>$pagado){
+        } else if ($importe > $pagado) {
             return 1; //pago parcial
-        }else {
+        } else {
             return 2; //pago total
         }
     }
 
-    public function getImporteAttribute($pedido)
+    public function getImporteAttribute()
     {
-        return $pedido->pedidoItems->reduce(function ($carry, $item) {
+        return $this->pedidoItems->reduce(function ($carry, $item) {
             return $carry + $item->precio_final;
         }, 0);
     }
