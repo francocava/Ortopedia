@@ -33,5 +33,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('/cobro', 'CobroController');
     Route::apiResource('/pedido', 'PedidoController');
     Route::apiResource('/pedidoItem', 'PedidoItemController');
-    Route::apiResource('/factura','FacturaController');
+    Route::apiResource('/factura', 'FacturaController');
 });

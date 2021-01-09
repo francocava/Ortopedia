@@ -39,9 +39,7 @@ class ProductoController extends Controller
         $producto->proveedor()->associate($proveedor);
         $producto->save();
 
-        foreach ($accesorios as $accesorio) {
-            $producto->accesorios()->attach($accesorio['id']);
-        }
+        foreach ($accesorios as $accesorio) $producto->accesorios()->attach($accesorio['id']);
 
         return response()->json($producto);
     }
@@ -79,11 +77,8 @@ class ProductoController extends Controller
         $producto->accesorios()->detach(); //Le saca todos sus accesorios
         $producto->save();
 
-        if ($accesorios != null) {
-            foreach ($accesorios as $accesorio) {
-                $producto->accesorios()->attach($accesorio['id']); //le pone los nuevos
-            }
-        }
+        if ($accesorios != null)
+            foreach ($accesorios as $accesorio) $producto->accesorios()->attach($accesorio['id']); // le pone los nuevos
 
         return response()->json($producto);
     }
@@ -94,12 +89,8 @@ class ProductoController extends Controller
      * @param  \App\Producto  $producto
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Producto $producto)
     {
-        $producto = Producto::findOrFail($id);
-        $producto->accesorios()->detach(); //Le saca todos sus accesorios
-        $producto->delete();
-
-        return response()->json($producto);
+        return response()->json($producto->delete());
     }
 }

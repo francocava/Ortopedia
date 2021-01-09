@@ -11,6 +11,8 @@ class Producto extends Model
 
     protected $with = ['proveedor'];
 
+    protected $appends = ['cantidad'];
+
     public function proveedor()
     {
         return $this->belongsTo('App\Proveedor');
@@ -24,5 +26,9 @@ class Producto extends Model
     public function accesorios()
     {
         return $this->belongsToMany('App\Accesorio', 'accesorio_producto');
+    }
+
+    public function getCantidadAttribute() {
+        return 1; //esto es un mini hack para el front
     }
 }

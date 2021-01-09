@@ -68,11 +68,8 @@ class ObraSocialController extends Controller
      * @param  \App\ObraSocial  $obraSocial
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(ObraSocial $obraSocial)
     {
-        $obraSocial = ObraSocial::findOrFail($id);
-        $obraSocial->delete();
-
-        return response()->json($obraSocial);
+        return response()->json($obraSocial->delete());
     }
 }

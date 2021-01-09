@@ -27,7 +27,9 @@ class FormaPagoController extends Controller
     public function store(Request $request)
     {
         $formaPago = new FormaPago();
+
         $formaPago->tipo = $request->tipo;
+
         $formaPago->save();
 
         return response()->json($formaPago);
@@ -54,6 +56,7 @@ class FormaPagoController extends Controller
     public function update(Request $request, FormaPago $formaPago)
     {
         $formaPago->tipo = $request->tipo;
+
         $formaPago->save();
 
         return response()->json($formaPago);
@@ -65,13 +68,8 @@ class FormaPagoController extends Controller
      * @param  \App\FormaPago  $formaPago
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(FormaPago $formaPago)
     {
-        $formaPagoDestroy = FormaPago::findOrFail($id);
-        $formaPagoDestroy->delete();
-
-        return response()->json($formaPagoDestroy);
-
-        //La URI es api/formaPago/1
+        return response()->json($formaPago->delete());
     }
 }

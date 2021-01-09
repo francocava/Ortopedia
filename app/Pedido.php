@@ -9,9 +9,14 @@ class Pedido extends Model
 {
     use SoftDeletes;
 
+    /**
+     * The relationships that should always be loaded.
+     *
+     * @var array
+     */
     protected $with = ['cliente'];
 
-    protected $appends = ['cancelado'];
+    protected $appends = ['cancelado', 'importe'];
 
     public function cliente()
     {
@@ -53,8 +58,25 @@ class Pedido extends Model
         return $this->hasMany('App\Factura');
     }
 
-    public function getCanceladoAttribute($value)
+    public function getCanceladoAttribute()
     {
-        return false;
+        $pagado = $this->pagos->reduce(function ($carry, $item) {
+            return $carry + $item->monto;
+        }, 0);
+
+        if ($pagado === 0) return 0;
+
+        $importe = $this->pedidoItems->reduce(function ($carry, $item) {
+            return $carry + $item->precio_final;
+        }, 0);
+
+        return $importe > $pagado ? 1 : 2;      //? 1: Pago parcial, 2: Pago total
+    }
+
+    public function getImporteAttribute()
+    {
+        return $this->pedidoItems->reduce(function ($carry, $item) {
+            return $carry + $item->precio_final;
+        }, 0);
     }
 }

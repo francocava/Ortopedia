@@ -10,6 +10,11 @@ class Usuario extends Authenticatable
 {
     use HasApiTokens, SoftDeletes;
 
+    /**
+     * The relationships that should always be loaded.
+     *
+     * @var array
+     */
     protected $with = ['Rol'];
 
     protected $hidden = [

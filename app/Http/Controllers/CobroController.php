@@ -28,8 +28,8 @@ class CobroController extends Controller
      */
     public function store(Request $request)
     {
-        logger($request);
         $cobro = new Cobro();
+
         $pedido = Pedido::findOrFail($request->pedido_id);
         $formaPago = FormaPago::findOrFail($request->forma_pago_id);
 
@@ -79,11 +79,8 @@ class CobroController extends Controller
      * @param  \App\Cobro  $cobro
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Cobro $cobro)
     {
-        $cobro = Cobro::findOrFail($id);
-        $cobro->delete();
-
-        return response()->json($cobro);
+        return response()->json($cobro->delete());
     }
 }

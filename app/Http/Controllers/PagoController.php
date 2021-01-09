@@ -29,12 +29,14 @@ class PagoController extends Controller
     public function store(Request $request)
     {
         $pago = new Pago();
+
         $pedido = Pedido::findOrFail($request->pedido_id);
         $formaPago = FormaPago::findOrFail($request->forma_pago_id);
         $proveedor = Proveedor::findOrFail($request->proveedor_id);
 
         $pago->monto = $request->monto;
         $pago->nro_confirmacion = $request->nro_confirmacion;
+
         $pago->pedido()->associate($pedido);
         $pago->formaPago()->associate($formaPago);
         $pago->proveedor()->associate($proveedor);
@@ -78,14 +80,11 @@ class PagoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param $id 
+     * @param $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Pago $pago)
     {
-        $pago = Pago::findOrFail($id);
-        $pago->delete();
-
-        return response()->json($pago);
+        return response()->json($pago->delete());
     }
 }

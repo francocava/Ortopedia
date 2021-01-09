@@ -9,7 +9,12 @@ class PedidoItem extends Model
 {
     use SoftDeletes;
 
-    protected $with = ['producto:id,nombre,descripcion', 'accesorio:id,nombre,descripcion']; //poniendolo asi solo me trae el nombre
+    /**
+     * The relationships that should always be loaded.
+     *
+     * @var array
+     */
+    protected $with = ['producto:id,nombre,descripcion', 'accesorio:id,nombre,descripcion'];
 
     protected $appends = ['precio_final'];
 

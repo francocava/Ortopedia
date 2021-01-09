@@ -9,6 +9,11 @@ class Cobro extends Model
 {
     use SoftDeletes;
 
+    /**
+     * The relationships that should always be loaded.
+     *
+     * @var array
+     */
     protected $with = ['formaPago'];
 
     public function pedido()

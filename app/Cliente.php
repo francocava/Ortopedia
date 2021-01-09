@@ -9,7 +9,7 @@ class Cliente extends Model
 {
     use SoftDeletes;
 
-    protected $table = 'clientes'; 
+    protected $table = 'clientes';
 
     /**
      * The relationships that should always be loaded.
