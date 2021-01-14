@@ -27,6 +27,6 @@ class Accesorio extends Model
     }
 
     public function getCantidadAttribute() {
-        return 1; //esto es un mini hack para el front
+        return 1; //? esto es un mini hack para el front
     }
 }
