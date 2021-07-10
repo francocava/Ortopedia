@@ -33,8 +33,13 @@ class PedidoItem extends Model
         return $this->belongsTo('App\Accesorio');
     }
 
-    public function getPrecioFinalAttribute()
+    /* public function getPrecioFinalAttribute()
     {
         return (($this->precio_item - ($this->precio_item) * ($this->porcentaje_os / 100)) * $this->cantidad);
+    } */
+
+    public function getPrecioFinalAttribute()
+    {
+        return (($this->precio_item - ($this->precio_item) * ($this->porcentaje_os / 100)));
     }
 }
