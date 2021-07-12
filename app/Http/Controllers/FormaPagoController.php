@@ -14,7 +14,9 @@ class FormaPagoController extends Controller
      */
     public function index()
     {
-        return response()->json(FormaPago::all());
+        $formaPagos = FormaPago::all();
+
+        return response()->json($formaPagos);
     }
 
 
