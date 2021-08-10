@@ -18,6 +18,9 @@ class Cliente extends Model
      */
     protected $with = ['obraSocial'];
 
+    protected $appends = ['nombreEntero'];
+
+
     public function pedidos()
     {
         return $this->hasMany('App\Pedido');
@@ -26,5 +29,10 @@ class Cliente extends Model
     public function obraSocial()
     {
         return $this->belongsTo('App\ObraSocial', 'obra_id');
+    }
+
+    public function getNombreEnteroAttribute()
+    {
+        return  "{$this->nombre} {$this->apellido}";
     }
 }
