@@ -58,6 +58,11 @@ class Pedido extends Model
         return $this->hasMany('App\Factura');
     }
 
+    public function formaPago()
+    {
+        return $this->belongsTo('App\FormaPago');
+    }
+
     public function getCanceladoAttribute()
     {
         $pagado = $this->pagos->reduce(function ($carry, $item) {
