@@ -14,7 +14,7 @@ class AddCantidadToPedidoItemsTable extends Migration
     public function up()
     {
         Schema::table('pedido_items', function (Blueprint $table) {
-            $table->integer('cantidad');
+            $table->integer('cantidad')->nullable();
         });
     }
 

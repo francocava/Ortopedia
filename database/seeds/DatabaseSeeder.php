@@ -159,7 +159,6 @@ class DatabaseSeeder extends Seeder
             'usuario_id' => '2',
             'fecha_ingreso_autorizacion' => '2020/10/22',
             'fecha_retiro' => '2020/11/22',
-            'importe' => '9090',
             'nro_recibo_proveedor' => '32434',
             'observaciones' => 'Du hast mich',
             'confirmado' => '1',

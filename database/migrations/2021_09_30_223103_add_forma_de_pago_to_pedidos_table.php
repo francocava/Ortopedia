@@ -14,7 +14,7 @@ class AddFormaDePagoToPedidosTable extends Migration
     public function up()
     {
         Schema::table('pedidos', function (Blueprint $table) {
-            $table->foreignId('forma_pago_id');
+            $table->foreignId('forma_pago_id')->nullable();
             $table->foreign('forma_pago_id')
                 ->references('id')->on('formas_pagos')
                 ->onUpdate('cascade')

@@ -14,7 +14,7 @@ class AddPlazoEntregaToPedidosTable extends Migration
     public function up()
     {
         Schema::table('pedidos', function (Blueprint $table) {
-            $table->string('plazo_entrega');
+            $table->string('plazo_entrega')->nullable();
         });
     }
 

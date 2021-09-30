@@ -14,7 +14,7 @@ class AddVigenciaPresupuestoToPedidosTable extends Migration
     public function up()
     {
         Schema::table('pedidos', function (Blueprint $table) {
-            $table->integer('vigencia_presupuesto');
+            $table->integer('vigencia_presupuesto')->nullable();
         });
     }
 
