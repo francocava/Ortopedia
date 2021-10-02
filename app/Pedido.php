@@ -14,7 +14,7 @@ class Pedido extends Model
      *
      * @var array
      */
-    protected $with = ['cliente'];
+    protected $with = ['cliente','formaPago'];
 
     protected $appends = ['cancelado', 'importe'];
 

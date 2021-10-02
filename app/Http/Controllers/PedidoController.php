@@ -44,6 +44,9 @@ class PedidoController extends Controller
         $pedido->fecha_retiro = $request->fecha_retiro;
         $pedido->nro_recibo_proveedor = $request->nro_recibo_proveedor;
         $pedido->observaciones = $request->observaciones;
+        $pedido->vigencia_presupuesto = $request->vigencia_presupuesto;
+        $pedido->plazo_entrega = $request->plazo_entrega;
+        $pedido->forma_pago_id = $request->forma_pago_id;
         $pedido->confirmado = $request->confirmado;
 
         $pedido->save();
@@ -110,6 +113,9 @@ class PedidoController extends Controller
         $pedido->fecha_retiro = $request->fecha_retiro;
         $pedido->nro_recibo_proveedor = $request->nro_recibo_proveedor;
         $pedido->observaciones = $request->observaciones;
+        $pedido->vigencia_presupuesto = $request->vigencia_presupuesto;
+        $pedido->plazo_entrega = $request->plazo_entrega;
+        $pedido->forma_pago_id = $request->forma_pago_id;
         $pedido->confirmado = $request->confirmado;
 
         $pedido->save();
