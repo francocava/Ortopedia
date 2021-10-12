@@ -39,7 +39,7 @@ class PedidoController extends Controller
 
         $pedido->cliente_id = $request->cliente['id'];
         $pedido->sucursal_id = $request->sucursal_id;
-        $pedido->usuario_id = $request->usuario_id;
+        $pedido->usuario_id = $request->user()->id;
         $pedido->fecha_ingreso_autorizacion = $request->fecha_ingreso_autorizacion;
         $pedido->fecha_retiro = $request->fecha_retiro;
         $pedido->nro_recibo_proveedor = $request->nro_recibo_proveedor;
@@ -108,7 +108,7 @@ class PedidoController extends Controller
     {
         $pedido->cliente_id = $request->cliente_id;
         $pedido->sucursal_id = $request->sucursal_id;
-        $pedido->usuario_id = $request->usuario_id;
+        $pedido->usuario_id = $request->user()->id;
         $pedido->fecha_ingreso_autorizacion = $request->fecha_ingreso_autorizacion;
         $pedido->fecha_retiro = $request->fecha_retiro;
         $pedido->nro_recibo_proveedor = $request->nro_recibo_proveedor;
