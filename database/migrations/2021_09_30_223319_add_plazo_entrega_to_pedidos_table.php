@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddCantidadToPedidoItemsTable extends Migration
+class AddPlazoEntregaToPedidosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddCantidadToPedidoItemsTable extends Migration
      */
     public function up()
     {
-        Schema::table('pedido_items', function (Blueprint $table) {
-            $table->integer('cantidad')->nullable();
+        Schema::table('pedidos', function (Blueprint $table) {
+            $table->string('plazo_entrega')->nullable();
         });
     }
 
@@ -25,8 +25,8 @@ class AddCantidadToPedidoItemsTable extends Migration
      */
     public function down()
     {
-        Schema::table('pedido_items', function (Blueprint $table) {
-            $table->dropColumn('cantidad');
+        Schema::table('pedidos', function (Blueprint $table) {
+            $table->dropColumn('plazo_entrega');
         });
     }
 }

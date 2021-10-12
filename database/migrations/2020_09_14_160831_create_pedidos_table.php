@@ -37,12 +37,10 @@ class CreatePedidosTable extends Migration
                 ->onUpdate('cascade')
                 ->onDelete('restrict');
 
-
             $table->foreign('usuario_id')
                 ->references('id')->on('usuarios')
                 ->onUpdate('cascade')
                 ->onDelete('restrict');
-
         });
     }
 

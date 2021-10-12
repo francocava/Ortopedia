@@ -14,7 +14,7 @@ class Pedido extends Model
      *
      * @var array
      */
-    protected $with = ['cliente'];
+    protected $with = ['cliente','formaPago'];
 
     protected $appends = ['cancelado', 'importe'];
 
@@ -56,6 +56,11 @@ class Pedido extends Model
     public function factura()
     {
         return $this->hasMany('App\Factura');
+    }
+
+    public function formaPago()
+    {
+        return $this->belongsTo('App\FormaPago');
     }
 
     public function getCanceladoAttribute()
